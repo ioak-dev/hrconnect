@@ -6,6 +6,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+Run `ng serve --project PROJECTNAME` for a project specific dev server. Navigate to `http://localhost:4200/`. This makes the PROJECTNAME to work as an independent Angular App. The app will automatically reload if you change any of the source files of that particular project.
+
+[Refer](https://medium.com/disney-streaming/combining-multiple-angular-applications-into-a-single-one-e87d530d6527).
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
