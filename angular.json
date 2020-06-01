@@ -23,9 +23,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -123,6 +126,260 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "hrc-attendance": {
+      "root": "projects/hrc-attendance/",
+      "sourceRoot": "projects/hrc-attendance/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/hrc-attendance",
+            "index": "projects/hrc-attendance/src/index.html",
+            "main": "projects/hrc-attendance/src/main.ts",
+            "polyfills": "projects/hrc-attendance/src/polyfills.ts",
+            "tsConfig": "projects/hrc-attendance/tsconfig.app.json",
+            "assets": [
+              "projects/hrc-attendance/src/favicon.ico",
+              "projects/hrc-attendance/src/assets"
+            ],
+            "styles": [
+              "projects/hrc-attendance/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/hrc-attendance/src/environments/environment.ts",
+                  "with": "projects/hrc-attendance/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "hrc-attendance:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "hrc-attendance:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "hrc-attendance:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/hrc-attendance/src/test.ts",
+            "polyfills": "projects/hrc-attendance/src/polyfills.ts",
+            "tsConfig": "projects/hrc-attendance/tsconfig.spec.json",
+            "karmaConfig": "projects/hrc-attendance/karma.conf.js",
+            "styles": [
+              "projects/hrc-attendance/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/hrc-attendance/src/favicon.ico",
+              "projects/hrc-attendance/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/hrc-attendance/tsconfig.app.json",
+              "projects/hrc-attendance/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "hrc-attendance-e2e": {
+      "root": "projects/hrc-attendance-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/hrc-attendance-e2e/protractor.conf.js",
+            "devServerTarget": "hrc-attendance:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "hrc-attendance:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/hrc-attendance-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "hrc-payroll": {
+      "root": "projects/hrc-payroll/",
+      "sourceRoot": "projects/hrc-payroll/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/hrc-payroll",
+            "index": "projects/hrc-payroll/src/index.html",
+            "main": "projects/hrc-payroll/src/main.ts",
+            "polyfills": "projects/hrc-payroll/src/polyfills.ts",
+            "tsConfig": "projects/hrc-payroll/tsconfig.app.json",
+            "assets": [
+              "projects/hrc-payroll/src/favicon.ico",
+              "projects/hrc-payroll/src/assets"
+            ],
+            "styles": [
+              "projects/hrc-payroll/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/hrc-payroll/src/environments/environment.ts",
+                  "with": "projects/hrc-payroll/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "hrc-payroll:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "hrc-payroll:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "hrc-payroll:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/hrc-payroll/src/test.ts",
+            "polyfills": "projects/hrc-payroll/src/polyfills.ts",
+            "tsConfig": "projects/hrc-payroll/tsconfig.spec.json",
+            "karmaConfig": "projects/hrc-payroll/karma.conf.js",
+            "styles": [
+              "projects/hrc-payroll/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/hrc-payroll/src/favicon.ico",
+              "projects/hrc-payroll/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/hrc-payroll/tsconfig.app.json",
+              "projects/hrc-payroll/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "hrc-payroll-e2e": {
+      "root": "projects/hrc-payroll-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/hrc-payroll-e2e/protractor.conf.js",
+            "devServerTarget": "hrc-payroll:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "hrc-payroll:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/hrc-payroll-e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]
