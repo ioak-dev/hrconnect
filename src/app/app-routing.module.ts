@@ -11,11 +11,15 @@ const routes: Routes = [
   },
   {
     path: 'hrc-attendance',
-    loadChildren: '../../projects/hrc-attendance/src/app/app.module#HrcAttendanceModule'
+    loadChildren: () => import('../../projects/hrc-attendance/src/app/app.module').then(m => m.HrcAttendanceModule)
   },
   {
     path: 'hrc-payroll',
-    loadChildren: '../../projects/hrc-payroll/src/app/app.module#HrcPayrollModule'
+    loadChildren: () => import('../../projects/hrc-payroll/src/app/app.module').then(m => m.HrcPayrollModule)
+  },
+  {
+    path: 'hrc-transport',
+    loadChildren: () => import('../../projects/hrc-transport/src/app/app.module').then(m => m.HrcTransportModule)
   },
   {
     path: '**',

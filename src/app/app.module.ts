@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { HrcAttendanceModule } from 'projects/hrc-attendance/src/app/app.module';
 import { HrcPayrollModule } from 'projects/hrc-payroll/src/app/app.module';
+import { HrcTransportModule } from 'projects/hrc-transport/src/app/app.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HrcPayrollModule } from 'projects/hrc-payroll/src/app/app.module';
     BrowserModule,
     AppRoutingModule,
     HrcAttendanceModule.forRoot(),
-    HrcPayrollModule.forRoot()
+    HrcPayrollModule.forRoot(),
+    HrcTransportModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
