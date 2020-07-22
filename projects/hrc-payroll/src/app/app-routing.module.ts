@@ -15,10 +15,6 @@ const routes: Routes = [
   {
     path: 'hrc-payroll',
     redirectTo: 'hrc-payroll/payroll'
-  },
-  {
-    path: '**',
-    redirectTo: 'hrc-payroll/payroll'
   }
 ];
 

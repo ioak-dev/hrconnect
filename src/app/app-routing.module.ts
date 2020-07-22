@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { HrcAttendanceModule } from 'projects/hrc-attendance/src/app/app.module';
 import { HrcPayrollModule } from 'projects/hrc-payroll/src/app/app.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { HrcTransportModule } from 'projects/hrc-transport/src/app/app.module';
 
 const routes: Routes = [
   {
@@ -31,7 +32,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     HrcAttendanceModule.forRoot(),
-    HrcPayrollModule.forRoot()
+    HrcPayrollModule.forRoot(),
+    HrcTransportModule.forRoot()
   ],
   exports: [RouterModule]
 })

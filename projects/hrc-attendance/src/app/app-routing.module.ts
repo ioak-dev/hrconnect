@@ -15,10 +15,6 @@ const routes: Routes = [
   {
     path: 'hrc-attendance',
     redirectTo: 'hrc-attendance/attendance'
-  },
-  {
-    path: '**',
-    redirectTo: 'hrc-attendance/attendance'
   }
 ];
 

@@ -4,6 +4,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateRequestComponent } from './create-request/create-request.component';
+const providers = [];
 
 @NgModule({
   declarations: [
@@ -14,9 +15,10 @@ import { CreateRequestComponent } from './create-request/create-request.componen
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: providers,
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
 
 export class HrcTransportModule {
