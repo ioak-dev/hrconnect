@@ -5,23 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
-import { HrcAttendanceModule } from 'projects/hrc-attendance/src/app/app.module';
-import { HrcPayrollModule } from 'projects/hrc-payroll/src/app/app.module';
-import { HrcTransportModule } from 'projects/hrc-transport/src/app/app.module';
+import { WizardComponent } from './travel/wizard/wizard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainNavComponent,
-    DashboardComponent
+    DashboardComponent,
+    WizardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HrcAttendanceModule.forRoot(),
-    HrcPayrollModule.forRoot(),
-    HrcTransportModule.forRoot()
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
