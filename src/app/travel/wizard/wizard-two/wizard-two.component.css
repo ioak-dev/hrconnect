@@ -11,13 +11,8 @@
   float: right;
   display: block;
 }
-
-h4 {
-  margin-left: 20px;
-  margin-bottom: 2rem;
-}
-
-.radio-group {
+.project-detail{
   display: flex;
   justify-content: center;
 }
+
