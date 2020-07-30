@@ -1,0 +1,7 @@
+<div *ngIf="!loggedIn">
+  You are not logged in <a href="/login" id="connect-button">Sign in using Exchange 365</a>
+  <br>
+</div>
+<button *ngIf="loggedIn" type="button" (click)="logout()" class="btn btn-primary">
+  Logout
+</button>
