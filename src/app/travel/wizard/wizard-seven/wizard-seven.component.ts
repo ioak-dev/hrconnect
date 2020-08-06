@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {ITravel} from '../../models/travel';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -9,8 +8,8 @@ import {Router} from '@angular/router';
 })
 export class WizardSevenComponent implements OnInit {
 
-  hotelArray: Array<ITravel> = [];
-  hotelDetails: Array<ITravel> = [];
+  hotelArray = [];
+  hotelDetails = [];
   newrow: any;
 
   constructor(
@@ -22,7 +21,7 @@ export class WizardSevenComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.newrow = {source: '', destination: '', comment: ''};
+    this.newrow = {location: '', checkinDate: '', checkoutDate: '', comment: ''};
     if (this.hotelArray.length === 0) {
       this.hotelArray.push(this.newrow);
     }
@@ -41,7 +40,7 @@ export class WizardSevenComponent implements OnInit {
   }
 
   addRow(index) {
-    this.newrow = {Source: '', Destination: '', Comment: ''};
+    this.newrow = {location: '', checkinDate: '', checkoutDate: '', comment: ''};
     this.hotelArray.push(this.newrow);
     console.log(this.hotelArray);
     return true;
