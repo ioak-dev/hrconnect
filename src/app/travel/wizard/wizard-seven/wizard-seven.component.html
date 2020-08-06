@@ -10,7 +10,7 @@
     </div>
     <br><br><br>
     <div class="project-detail">
-      <h4>Cab Details</h4>
+      <h4>Hotel Details</h4>
     </div>
     <table class="table table-striped table-bordered">
       <thead>
@@ -23,15 +23,15 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let dynamic of cabArray; let i = index;">
+      <tr *ngFor="let hotel of hotelArray; let i = index;">
         <td>
-          <input [(ngModel)]="cabArray[i].source" class="form-control" type="text"/>
+          <input [(ngModel)]="hotel.source" class="form-control" type="text"/>
         </td>
         <td>
-          <input [(ngModel)]="cabArray[i].destination" class="form-control" type="text"/>
+          <input [(ngModel)]="hotel.destination" class="form-control" type="text"/>
         </td>
         <td>
-          <input [(ngModel)]="cabArray[i].comment" class="form-control" type="text"/>
+          <input [(ngModel)]="hotel.comment" class="form-control" type="text"/>
         </td>
         <td>
           <i (click)="deleteRow(i)" >

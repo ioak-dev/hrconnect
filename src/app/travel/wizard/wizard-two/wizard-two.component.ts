@@ -23,13 +23,15 @@ export class WizardTwoComponent implements OnInit {
 
   ngOnInit() {
     this.newrow = {ProjectName: '', EmpId: ''};
-    this.projectArray.push(this.newrow);
+    if (this.projectArray.length === 0) {
+      this.projectArray.push(this.newrow);
+    }
   }
 
   navigateNext() {
     this.ProjectDetails = this.projectArray.filter(project => project.EmpId.length > 0);
     sessionStorage.setItem('ProjectDetails', JSON.stringify(this.ProjectDetails));
-    this.router.navigate(['travel/travelMode']);
+    this.router.navigate(['travel/cabDetail']);
   }
 
   navigatePrevious() {

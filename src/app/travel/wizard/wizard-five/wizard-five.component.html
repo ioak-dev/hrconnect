@@ -10,7 +10,7 @@
     </div>
     <br><br><br>
     <div class="project-detail">
-      <h4>Cab Details</h4>
+      <h4>Train Details</h4>
     </div>
     <table class="table table-striped table-bordered">
       <thead>
@@ -23,15 +23,15 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let dynamic of cabArray; let i = index;">
+      <tr *ngFor="let train of trainArray; let i = index;">
         <td>
-          <input [(ngModel)]="cabArray[i].source" class="form-control" type="text"/>
+          <input [(ngModel)]="train.source" class="form-control" type="text"/>
         </td>
         <td>
-          <input [(ngModel)]="cabArray[i].destination" class="form-control" type="text"/>
+          <input [(ngModel)]="train.destination" class="form-control" type="text"/>
         </td>
         <td>
-          <input [(ngModel)]="cabArray[i].comment" class="form-control" type="text"/>
+          <input [(ngModel)]="train.comment" class="form-control" type="text"/>
         </td>
         <td>
           <i (click)="deleteRow(i)" >
