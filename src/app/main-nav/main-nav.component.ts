@@ -7,10 +7,12 @@ import { AuthService } from '../core/services/auth.service';
   styleUrls: ['./main-nav.component.css']
 })
 export class MainNavComponent implements OnInit {
+  username: string;
 
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
+    this.username = sessionStorage.getItem('userDisplayName');
   }
 
 }

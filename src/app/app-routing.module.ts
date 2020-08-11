@@ -14,13 +14,11 @@ import {UnauthorizedComponent} from './unauthorized/unauthorized.component';
 
 
 const routes: Routes = [
-  {path: '', component: LoginComponent},
+  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {
     path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard]
-
+    component: DashboardComponent
   },
   {
     path: 'travel',
