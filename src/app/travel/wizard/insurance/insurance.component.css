@@ -1,0 +1,14 @@
+.travel-options {
+  display: block;
+}
+.button-group {
+  display: block;
+}
+.next-button {
+  float: right;
+  display: block;
+}
+.project-detail{
+  display: flex;
+  justify-content: center;
+}

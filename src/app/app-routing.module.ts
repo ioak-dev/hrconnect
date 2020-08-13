@@ -12,6 +12,8 @@ import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './auth.guard';
 import {UnauthorizedComponent} from './unauthorized/unauthorized.component';
 import { VisaComponent } from './travel/wizard/visa/visa.component';
+import { InsuranceComponent } from './travel/wizard/insurance/insurance.component';
+import { SubmitComponent } from './travel/wizard/submit/submit.component';
 
 
 const routes: Routes = [
@@ -59,6 +61,16 @@ const routes: Routes = [
   {
     path: 'travel/visaDetail',
     component: VisaComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'travel/insuranceDetail',
+    component: InsuranceComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'travel/submit',
+    component: SubmitComponent,
     canActivate: [AuthGuard]
   },
   {

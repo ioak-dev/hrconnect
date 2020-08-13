@@ -27,15 +27,13 @@ export class VisaComponent implements OnInit {
   }
 
   navigatePrevious() {
-    // this.cabDetails = this.cabArray.filter(cab => cab.source.length > 0);
     sessionStorage.setItem('VisaDetails', JSON.stringify(this.visaArray));
     this.router.navigate(['travel/empDetail']);
   }
 
   navigateNext() {
-    // this.cabDetails = this.cabArray.filter(cab => cab.source.length > 0);
     sessionStorage.setItem('VisaDetails', JSON.stringify(this.visaArray));
-    this.router.navigate(['travel']);
+    this.router.navigate(['travel/insuranceDetail']);
   }
 
   addRow(index) {

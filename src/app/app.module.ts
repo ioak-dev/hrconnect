@@ -18,6 +18,8 @@ import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './auth.guard';
 import {UnauthorizedComponent} from './unauthorized/unauthorized.component';
 import { VisaComponent } from './travel/wizard/visa/visa.component';
+import { InsuranceComponent } from './travel/wizard/insurance/insurance.component';
+import { SubmitComponent } from './travel/wizard/submit/submit.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { VisaComponent } from './travel/wizard/visa/visa.component';
     WizardSevenComponent,
     LoginComponent,
     UnauthorizedComponent,
-    VisaComponent
+    VisaComponent,
+    InsuranceComponent,
+    SubmitComponent
   ],
   imports: [
     BrowserModule,
