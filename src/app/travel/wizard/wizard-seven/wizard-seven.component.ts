@@ -30,7 +30,7 @@ export class WizardSevenComponent implements OnInit {
   navigateNext() {
     // this.cabDetails = this.cabArray.filter(cab => cab.source.length > 0);
     sessionStorage.setItem('HotelDetails', JSON.stringify(this.hotelArray));
-    this.router.navigate(['travel']);
+    alert('TBD');
   }
 
   navigatePrevious() {

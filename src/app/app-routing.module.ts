@@ -11,6 +11,7 @@ import {WizardSevenComponent} from './travel/wizard/wizard-seven/wizard-seven.co
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './auth.guard';
 import {UnauthorizedComponent} from './unauthorized/unauthorized.component';
+import { VisaComponent } from './travel/wizard/visa/visa.component';
 
 
 const routes: Routes = [
@@ -53,6 +54,11 @@ const routes: Routes = [
   {
     path: 'travel/hotelDetail',
     component: WizardSevenComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'travel/visaDetail',
+    component: VisaComponent,
     canActivate: [AuthGuard]
   },
   {

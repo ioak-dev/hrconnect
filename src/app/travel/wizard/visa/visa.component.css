@@ -1,24 +1,14 @@
 .travel-options {
-  margin: 0 20%;
   display: block;
 }
-
 .button-group {
   display: block;
 }
-
 .next-button {
   float: right;
   display: block;
 }
-
-h4 {
-  margin-left: 20px;
-  margin-bottom: 2rem;
-}
-
-.radio-group {
+.project-detail{
   display: flex;
   justify-content: center;
 }
-
