@@ -12,3 +12,6 @@
   display: flex;
   justify-content: center;
 }
+.card{
+  margin-bottom: 10px;
+}
