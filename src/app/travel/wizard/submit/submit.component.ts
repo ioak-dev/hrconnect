@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {IProject} from '../../models/project';
+import { Component, OnInit } from '@angular/core';
+import { TravelService } from 'src/app/core/services/travel.service';
+import { tap } from 'rxjs/operators';
 import {ITravel} from '../../models/travel';
+import {IProject} from '../../models/project';
 
 @Component({
   selector: 'app-submit',
@@ -18,10 +20,7 @@ export class SubmitComponent implements OnInit {
   visaDetail = [];
   insuranceDetails = [];
 
-  constructor() {
-    this.projectDetails = JSON.parse(sessionStorage.getItem('ProjectDetails'));
-
-  }
+  constructor(private travelService: TravelService) { }
 
   ngOnInit() {
     this.loadDaataFromStore();
@@ -38,6 +37,17 @@ export class SubmitComponent implements OnInit {
     this.visaDetail = JSON.parse(sessionStorage.getItem('VisaDetails'));
     this.insuranceDetails = JSON.parse(sessionStorage.getItem('InsuranceDetails'));
     console.log(this.projectDetails);
+  }
+
+  submit() {
+    this.travelService.submit()
+    .subscribe(
+      (response) => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      });
   }
 
 }
