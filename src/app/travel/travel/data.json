@@ -1,0 +1,45 @@
+{
+  "projectDetails": [
+    {
+      "ProjectName": "test",
+      "EmpId": "700"
+    }
+  ],
+  "travelType": "domestic",
+  "cabDetails": [
+    {
+      "source": "Test",
+      "destination": "Test",
+      "comment": "Test"
+    }
+  ],
+  "flightDetails": [
+    {
+      "source": "Test",
+      "destination": "Test",
+      "comment": "Test"
+    }
+  ],
+  "trainDetails": [
+    {
+      "source": "Test",
+      "destination": "Test",
+      "comment": "Test"
+    }
+  ],
+  "busDetails": [
+    {
+      "source": "Test",
+      "destination": "Test",
+      "comment": "Test"
+    }
+  ],
+  "hotelDetails": [
+    {
+      "location": "Test",
+      "checkinDate": "2020-10-01",
+      "checkoutDate": "2020-11-01",
+      "comment": "Test"
+    }
+  ]
+}

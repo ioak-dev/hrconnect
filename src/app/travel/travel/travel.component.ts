@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import * as data from './data.json';
 
 @Component({
   selector: 'app-travel',
@@ -8,21 +8,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./travel.component.css']
 })
 export class TravelComponent implements OnInit {
+  data: any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    this.data = data;
+  }
 
   ngOnInit() {
   }
 
   create() {
+    sessionStorage.removeItem('request');
     this.router.navigate(['travel/empDetail']);
   }
 
   edit() {
+    sessionStorage.removeItem('request');
+    sessionStorage.setItem('request', JSON.stringify(this.data.default));
     this.router.navigate(['travel/empDetail']);
   }
 
   view() {
+    sessionStorage.removeItem('request');
+    sessionStorage.setItem('request', JSON.stringify(this.data.default));
     this.router.navigate(['travel/submit']);
   }
 }
