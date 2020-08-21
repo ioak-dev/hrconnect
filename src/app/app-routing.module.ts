@@ -14,6 +14,7 @@ import {UnauthorizedComponent} from './unauthorized/unauthorized.component';
 import { VisaComponent } from './travel/wizard/visa/visa.component';
 import { InsuranceComponent } from './travel/wizard/insurance/insurance.component';
 import { SubmitComponent } from './travel/wizard/submit/submit.component';
+import { TravelComponent } from './travel/travel/travel.component';
 
 
 const routes: Routes = [
@@ -25,11 +26,16 @@ const routes: Routes = [
   },
   {
     path: 'travel',
-    component: WizardOneComponent,
+    component: TravelComponent,
     canActivate: [AuthGuard]
   },
   {
     path: 'travel/empDetail',
+    component: WizardOneComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'travel/travelType',
     component: WizardTwoComponent,
     canActivate: [AuthGuard]
   },

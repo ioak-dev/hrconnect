@@ -7,19 +7,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./visa.component.css']
 })
 export class VisaComponent implements OnInit {
-  visaDetails = [];
   visaArray = [];
   visaNew: string;
   newrow: any;
 
   constructor(public router: Router) {
-    if (sessionStorage.VisaDetails && sessionStorage.VisaDetails !== '[null]') {
-      this.visaArray = JSON.parse(sessionStorage.getItem('VisaDetails'));
+    if (sessionStorage.request) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      this.visaArray = request.visaDetails ? request.visaDetails : [];
     }
   }
 
   ngOnInit() {
-    console.log(this.visaArray);
     this.newrow = {country: '', visaType: '', entryType: '', comment: ''};
     if (this.visaArray.length === 0) {
       this.visaArray.push(this.newrow);
@@ -27,12 +26,18 @@ export class VisaComponent implements OnInit {
   }
 
   navigatePrevious() {
-    sessionStorage.setItem('VisaDetails', JSON.stringify(this.visaArray));
-    this.router.navigate(['travel/empDetail']);
+    const request = JSON.parse(sessionStorage.getItem('request'));
+    request['visaDetails'] = this.visaArray;
+    console.log(request);
+    sessionStorage.setItem('request', JSON.stringify(request));
+    this.router.navigate(['travel/travelType']);
   }
 
   navigateNext() {
-    sessionStorage.setItem('VisaDetails', JSON.stringify(this.visaArray));
+    const request = JSON.parse(sessionStorage.getItem('request'));
+    request['visaDetails'] = this.visaArray;
+    console.log(request);
+    sessionStorage.setItem('request', JSON.stringify(request));
     this.router.navigate(['travel/insuranceDetail']);
   }
 

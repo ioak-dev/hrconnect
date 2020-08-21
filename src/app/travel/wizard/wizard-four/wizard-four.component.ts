@@ -8,17 +8,15 @@ import {Router} from '@angular/router';
   styleUrls: ['./wizard-four.component.css']
 })
 export class WizardFourComponent implements OnInit {
-
   flightArray: Array<ITravel> = [];
-  flightDetails: Array<ITravel> = [];
   newrow: any;
 
   constructor(
     public router: Router
   ) {
-    if (sessionStorage.FlightDetails && sessionStorage.FlightDetails !== '[null]') {
-      this.flightArray = JSON.parse(sessionStorage.getItem('FlightDetails'));
-      console.log(this.flightArray);
+    if (sessionStorage.request) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      this.flightArray = request.flightDetails ? request.flightDetails : [];
     }
   }
 
@@ -30,19 +28,23 @@ export class WizardFourComponent implements OnInit {
   }
 
   navigateNext() {
-    // this.cabDetails = this.cabArray.filter(cab => cab.source.length > 0);
-    sessionStorage.setItem('FlightDetails', JSON.stringify(this.flightArray));
+    const request = JSON.parse(sessionStorage.getItem('request'));
+    request['flightDetails'] = this.flightArray;
+    console.log(request);
+    sessionStorage.setItem('request', JSON.stringify(request));
     this.router.navigate(['travel/trainDetail']);
   }
 
   navigatePrevious() {
-    // this.cabDetails = this.cabArray.filter(cab => cab.source.length > 0);
-    sessionStorage.setItem('FlightDetails', JSON.stringify(this.flightArray));
+    const request = JSON.parse(sessionStorage.getItem('request'));
+    request['flightDetails'] = this.flightArray;
+    console.log(request);
+    sessionStorage.setItem('request', JSON.stringify(request));
     this.router.navigate(['travel/cabDetail']);
   }
 
   addRow(index) {
-    this.newrow = {Source: '', Destination: '', Comment: ''};
+    this.newrow = {source: '', destination: '', comment: ''};
     this.flightArray.push(this.newrow);
     console.log(this.flightArray);
     return true;

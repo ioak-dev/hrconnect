@@ -8,17 +8,15 @@ import {Router} from '@angular/router';
   styleUrls: ['./wizard-five.component.css']
 })
 export class WizardFiveComponent implements OnInit {
-
   trainArray: Array<ITravel> = [];
-  trainDetails: Array<ITravel> = [];
   newrow: any;
 
   constructor(
     public router: Router
   ) {
-    if (sessionStorage.TrainDetails && sessionStorage.TrainDetails !== '[null]') {
-      this.trainArray = JSON.parse(sessionStorage.getItem('TrainDetails'));
-      console.log(this.trainArray);
+    if (sessionStorage.request) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      this.trainArray = request.trainDetails ? request.trainDetails : [];
     }
   }
 
@@ -30,19 +28,23 @@ export class WizardFiveComponent implements OnInit {
   }
 
   navigateNext() {
-    // this.cabDetails = this.cabArray.filter(cab => cab.source.length > 0);
-    sessionStorage.setItem('TrainDetails', JSON.stringify(this.trainArray));
+    const request = JSON.parse(sessionStorage.getItem('request'));
+    request['trainDetails'] = this.trainArray;
+    console.log(request);
+    sessionStorage.setItem('request', JSON.stringify(request));
     this.router.navigate(['travel/busDetail']);
   }
 
   navigatePrevious() {
-    // this.cabDetails = this.cabArray.filter(cab => cab.source.length > 0);
-    sessionStorage.setItem('TrainDetails', JSON.stringify(this.trainArray));
+    const request = JSON.parse(sessionStorage.getItem('request'));
+    request['trainDetails'] = this.trainArray;
+    console.log(request);
+    sessionStorage.setItem('request', JSON.stringify(request));
     this.router.navigate(['travel/flightDetail']);
   }
 
   addRow(index) {
-    this.newrow = {Source: '', Destination: '', Comment: ''};
+    this.newrow = {source: '', destination: '', comment: ''};
     this.trainArray.push(this.newrow);
     console.log(this.trainArray);
     return true;
@@ -52,5 +54,4 @@ export class WizardFiveComponent implements OnInit {
     this.trainArray.splice(index, 1);
     return true;
   }
-
 }

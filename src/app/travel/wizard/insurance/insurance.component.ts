@@ -13,13 +13,13 @@ export class InsuranceComponent implements OnInit {
   newrow: any;
 
   constructor(public router: Router) {
-    if (sessionStorage.InsuranceDetails && sessionStorage.InsuranceDetails !== '[null]') {
-      this.insuranceArray = JSON.parse(sessionStorage.getItem('InsuranceDetails'));
+    if (sessionStorage.request) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      this.insuranceArray = request.insuranceDetails ? request.insuranceDetails : [];
     }
   }
 
   ngOnInit() {
-    console.log(this.insuranceArray);
     this.newrow = {country: '', comment: ''};
     if (this.insuranceArray.length === 0) {
       this.insuranceArray.push(this.newrow);
@@ -27,12 +27,18 @@ export class InsuranceComponent implements OnInit {
   }
 
   navigatePrevious() {
-    sessionStorage.setItem('InsuranceDetails', JSON.stringify(this.insuranceArray));
+    const request = JSON.parse(sessionStorage.getItem('request'));
+    request['insuranceDetails'] = this.insuranceArray;
+    console.log(request);
+    sessionStorage.setItem('request', JSON.stringify(request));
     this.router.navigate(['travel/visaDetail']);
   }
 
   navigateNext() {
-    sessionStorage.setItem('InsuranceDetails', JSON.stringify(this.insuranceArray));
+    const request = JSON.parse(sessionStorage.getItem('request'));
+    request['insuranceDetails'] = this.insuranceArray;
+    console.log(request);
+    sessionStorage.setItem('request', JSON.stringify(request));
     this.router.navigate(['travel/cabDetail']);
   }
 
@@ -47,5 +53,4 @@ export class InsuranceComponent implements OnInit {
     this.insuranceArray.splice(index, 1);
     return true;
   }
-
 }

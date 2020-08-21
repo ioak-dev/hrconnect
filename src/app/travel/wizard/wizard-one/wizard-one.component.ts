@@ -9,14 +9,16 @@ import {IProject} from '../../models/project';
 })
 export class WizardOneComponent implements OnInit {
   projectArray: Array<IProject> = [];
-  ProjectDetails: Array<IProject> = [];
   newrow: any = {};
 
   constructor(
     public router: Router
   ) {
-    if (sessionStorage.ProjectDetails) {
-      this.projectArray = JSON.parse(sessionStorage.getItem('ProjectDetails'));
+    if (sessionStorage.request) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      this.projectArray = request.projectDetails ? request.projectDetails : [];
+    } else {
+      sessionStorage.setItem('request', JSON.stringify({}));
     }
   }
 
@@ -28,9 +30,11 @@ export class WizardOneComponent implements OnInit {
   }
 
   navigateNext() {
-    this.ProjectDetails = this.projectArray.filter(project => project.EmpId.length > 0);
-    sessionStorage.setItem('ProjectDetails', JSON.stringify(this.ProjectDetails));
-    this.router.navigate(['travel/empDetail']);
+    const request = JSON.parse(sessionStorage.getItem('request'));
+    request['projectDetails'] = this.projectArray;
+    console.log(request);
+    sessionStorage.setItem('request', JSON.stringify(request));
+    this.router.navigate(['travel/travelType']);
   }
 
   addRow(index) {

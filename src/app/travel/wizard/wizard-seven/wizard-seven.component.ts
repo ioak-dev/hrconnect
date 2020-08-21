@@ -7,16 +7,15 @@ import {Router} from '@angular/router';
   styleUrls: ['./wizard-seven.component.css']
 })
 export class WizardSevenComponent implements OnInit {
-
   hotelArray = [];
-  hotelDetails = [];
   newrow: any;
 
   constructor(
     public router: Router
   ) {
-    if (sessionStorage.HotelDetails && sessionStorage.HotelDetails !== '[null]') {
-      this.hotelArray = JSON.parse(sessionStorage.getItem('HotelDetails'));
+    if (sessionStorage.request) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      this.hotelArray = request.hotelDetails ? request.hotelDetails : [];
     }
   }
 
@@ -28,14 +27,18 @@ export class WizardSevenComponent implements OnInit {
   }
 
   navigateNext() {
-    // this.cabDetails = this.cabArray.filter(cab => cab.source.length > 0);
-    sessionStorage.setItem('HotelDetails', JSON.stringify(this.hotelArray));
+    const request = JSON.parse(sessionStorage.getItem('request'));
+    request['hotelDetails'] = this.hotelArray;
+    console.log(request);
+    sessionStorage.setItem('request', JSON.stringify(request));
     this.router.navigate(['travel/submit']);
   }
 
   navigatePrevious() {
-    // this.cabDetails = this.cabArray.filter(cab => cab.source.length > 0);
-    sessionStorage.setItem('HotelDetails', JSON.stringify(this.hotelArray));
+    const request = JSON.parse(sessionStorage.getItem('request'));
+    request['hotelDetails'] = this.hotelArray;
+    console.log(request);
+    sessionStorage.setItem('request', JSON.stringify(request));
     this.router.navigate(['travel/busDetail']);
   }
 
@@ -50,6 +53,4 @@ export class WizardSevenComponent implements OnInit {
     this.hotelArray.splice(index, 1);
     return true;
   }
-
-
 }

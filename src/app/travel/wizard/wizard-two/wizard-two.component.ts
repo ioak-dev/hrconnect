@@ -12,8 +12,9 @@ export class WizardTwoComponent implements OnInit {
   constructor(
     public router: Router
   ) {
-    if (sessionStorage.TravelType) {
-      this.travelType = sessionStorage.getItem('TravelType');
+    if (sessionStorage.request) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      this.travelType = request.travelType;
     }
   }
 
@@ -21,7 +22,10 @@ export class WizardTwoComponent implements OnInit {
   }
 
   navigateNext() {
-    sessionStorage.setItem('TravelType', this.travelType);
+    const request = JSON.parse(sessionStorage.getItem('request'));
+    request['travelType'] = this.travelType;
+    console.log(request);
+    sessionStorage.setItem('request', JSON.stringify(request));
     if (this.travelType === 'domestic') {
       this.router.navigate(['travel/cabDetail']);
     } else if (this.travelType === 'international') {
@@ -30,6 +34,10 @@ export class WizardTwoComponent implements OnInit {
   }
 
   navigatePrevious() {
-    this.router.navigate(['travel']);
+    const request = JSON.parse(sessionStorage.getItem('request'));
+    request['travelType'] = this.travelType;
+    console.log(request);
+    sessionStorage.setItem('request', JSON.stringify(request));
+    this.router.navigate(['travel/empDetail']);
   }
 }

@@ -9,14 +9,14 @@ import {Router} from '@angular/router';
 })
 export class WizardThreeComponent implements OnInit {
   cabArray: Array<ITravel> = [];
-  cabDetails: Array<ITravel> = [];
   newrow: any = {};
 
   constructor(
     public router: Router
   ) {
-    if (sessionStorage.CabDetails) {
-      this.cabArray = JSON.parse(sessionStorage.getItem('CabDetails'));
+    if (sessionStorage.request) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      this.cabArray = request.cabDetails ? request.cabDetails : [];
     }
   }
 
@@ -28,19 +28,23 @@ export class WizardThreeComponent implements OnInit {
   }
 
   navigateNext() {
-    // this.cabDetails = this.cabArray.filter(cab => cab.source.length > 0);
-    sessionStorage.setItem('CabDetails', JSON.stringify(this.cabArray));
+    const request = JSON.parse(sessionStorage.getItem('request'));
+    request['cabDetails'] = this.cabArray;
+    console.log(request);
+    sessionStorage.setItem('request', JSON.stringify(request));
     this.router.navigate(['travel/flightDetail']);
   }
 
   navigatePrevious() {
-    // this.cabDetails = this.cabArray.filter(cab => cab.source.length > 0);
-    sessionStorage.setItem('CabDetails', JSON.stringify(this.cabArray));
-    this.router.navigate(['travel/empDetail']);
+    const request = JSON.parse(sessionStorage.getItem('request'));
+    request['cabDetails'] = this.cabArray;
+    console.log(request);
+    sessionStorage.setItem('request', JSON.stringify(request));
+    this.router.navigate(['travel/travelType']);
   }
 
   addRow(index) {
-    this.newrow = {Source: '', Destination: '', Comment: ''};
+    this.newrow = {source: '', destination: '', comment: ''};
     this.cabArray.push(this.newrow);
     console.log(this.cabArray);
     return true;
@@ -50,5 +54,4 @@ export class WizardThreeComponent implements OnInit {
     this.cabArray.splice(index, 1);
     return true;
   }
-
 }

@@ -31,7 +31,7 @@
       </div>
     </div>
     <!--visa Details-->
-    <div *ngIf="visaDetail" class="card">
+    <div *ngIf="visaDetails" class="card">
       <div class="card-header">
         Visa Details
       </div>
@@ -46,7 +46,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let visa of visaDetail">
+          <tr *ngFor="let visa of visaDetails">
             <td>{{visa.country}}</td>
             <td>{{visa.visaType}}</td>
             <td>{{visa.entryType}}</td>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TravelService } from 'src/app/core/services/travel.service';
-import { tap } from 'rxjs/operators';
 import {ITravel} from '../../models/travel';
 import {IProject} from '../../models/project';
 
@@ -17,26 +16,28 @@ export class SubmitComponent implements OnInit {
   busDetails: ITravel[];
   flightDetails: ITravel[];
   hotelDetails = [];
-  visaDetail = [];
+  visaDetails = [];
   insuranceDetails = [];
 
   constructor(private travelService: TravelService) { }
 
   ngOnInit() {
-    this.loadDaataFromStore();
+    this.loadDataFromStore();
   }
 
-  loadDaataFromStore() {
-    this.projectDetails = JSON.parse(sessionStorage.getItem('ProjectDetails'));
-    this.travelType = sessionStorage.getItem('TravelType');
-    this.cabDetails = JSON.parse(sessionStorage.getItem('CabDetails'));
-    this.trainDetails = JSON.parse(sessionStorage.getItem('TrainDetails'));
-    this.busDetails = JSON.parse(sessionStorage.getItem('BusDetails'));
-    this.flightDetails = JSON.parse(sessionStorage.getItem('FlightDetails'));
-    this.hotelDetails = JSON.parse(sessionStorage.getItem('HotelDetails'));
-    this.visaDetail = JSON.parse(sessionStorage.getItem('VisaDetails'));
-    this.insuranceDetails = JSON.parse(sessionStorage.getItem('InsuranceDetails'));
-    console.log(this.projectDetails);
+  loadDataFromStore() {
+    if (sessionStorage.request) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      this.projectDetails = request.projectDetails;
+      this.travelType = request.travelType;
+      this.cabDetails = request.cabDetails;
+      this.trainDetails = request.trainDetails;
+      this.busDetails = request.busDetails;
+      this.flightDetails = request.flightDetails;
+      this.hotelDetails = request.hotelDetails;
+      this.visaDetails = request.visaDetails;
+      this.insuranceDetails = request.insuranceDetails;
+    }
   }
 
   submit() {
@@ -47,7 +48,7 @@ export class SubmitComponent implements OnInit {
       },
       error => {
         console.log(error);
-      });
+      }
+    );
   }
-
 }
