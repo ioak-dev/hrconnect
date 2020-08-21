@@ -211,7 +211,7 @@
     <form>
       <div class="form-group">
         <label for="exampleFormControlTextarea1">E-mail of Project Manager</label>
-        <input type="email" class="form-control" id="exampleFormControlTextarea1"/>
+        <input [(ngModel)]="pmEmail" [ngModelOptions]="{standalone: true}" type="email" class="form-control" id="exampleFormControlTextarea1"/>
       </div>
       <button type="submit" class="btn btn-primary" (click)="submit()">Submit</button>
     </form>

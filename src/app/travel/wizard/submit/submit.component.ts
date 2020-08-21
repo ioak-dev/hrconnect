@@ -18,6 +18,7 @@ export class SubmitComponent implements OnInit {
   hotelDetails = [];
   visaDetails = [];
   insuranceDetails = [];
+  pmEmail: string
 
   constructor(private travelService: TravelService) { }
 
@@ -41,7 +42,7 @@ export class SubmitComponent implements OnInit {
   }
 
   submit() {
-    this.travelService.submit()
+    this.travelService.submit(sessionStorage.getItem('request'))
     .subscribe(
       (response) => {
         console.log(response);
