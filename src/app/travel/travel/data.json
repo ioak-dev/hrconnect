@@ -1,11 +1,11 @@
 {
   "projectDetails": [
     {
-      "ProjectName": "test",
-      "EmpId": "700"
+      "projectName": "test",
+      "empId": "700"
     }
   ],
-  "travelType": "domestic",
+  "travelType": "Domestic",
   "cabDetails": [
     {
       "source": "Test",

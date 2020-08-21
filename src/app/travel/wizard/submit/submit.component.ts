@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TravelService } from 'src/app/core/services/travel.service';
 import {ITravel} from '../../models/travel';
 import {IProject} from '../../models/project';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-submit',
@@ -9,21 +10,25 @@ import {IProject} from '../../models/project';
   styleUrls: ['./submit.component.css']
 })
 export class SubmitComponent implements OnInit {
+  @Input() view: boolean;
   projectDetails: IProject[] = [];
   travelType: string;
-  cabDetails: ITravel[];
-  trainDetails: ITravel[];
-  busDetails: ITravel[];
-  flightDetails: ITravel[];
+  cabDetails: ITravel[] = [];
+  trainDetails: ITravel[] = [];
+  busDetails: ITravel[] = [];
+  flightDetails: ITravel[] = [];
   hotelDetails = [];
   visaDetails = [];
   insuranceDetails = [];
-  pmEmail: string
+  pmEmail: string;
 
-  constructor(private travelService: TravelService) { }
+  constructor(private travelService: TravelService,
+    private router: Router) { }
 
   ngOnInit() {
-    this.loadDataFromStore();
+    setTimeout(() => {
+      this.loadDataFromStore();
+    }, 1000);
   }
 
   loadDataFromStore() {
@@ -38,18 +43,41 @@ export class SubmitComponent implements OnInit {
       this.hotelDetails = request.hotelDetails;
       this.visaDetails = request.visaDetails;
       this.insuranceDetails = request.insuranceDetails;
+      this.pmEmail = request.pmEmail;
     }
   }
 
   submit() {
-    this.travelService.submit(sessionStorage.getItem('request'))
+    const request = JSON.parse(sessionStorage.getItem('request'));
+    request['pmEmail'] = this.pmEmail;
+    console.log(request);
+    sessionStorage.setItem('request', JSON.stringify(request));
+    const payload = {
+      projectDetails: request.projectDetails,
+      travelType: request.travelType,
+      cabDetails: request.cabDetails,
+      trainDetails: request.trainDetails,
+      busDetails: request.busDetails,
+      flightDetails: request.flightDetails,
+      hotelDetails: request.hotelDetails,
+      visaDetails: request.visaDetails,
+      insuranceDetails: request.insuranceDetails,
+      pmEmail: this.pmEmail,
+      createdBy: sessionStorage.getItem('userDisplayName')
+    };
+    this.travelService.submit(payload)
     .subscribe(
       (response) => {
         console.log(response);
+        this.router.navigate(['travel']);
       },
       error => {
         console.log(error);
       }
     );
+  }
+
+  close() {
+    this.router.navigate(['/travel'])
   }
 }

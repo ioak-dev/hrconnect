@@ -7,9 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./insurance.component.css']
 })
 export class InsuranceComponent implements OnInit {
-  insuranceDetails = [];
   insuranceArray = [];
-  insuranceNew: string;
+  insuranceNew = 'new';
   newrow: any;
 
   constructor(public router: Router) {

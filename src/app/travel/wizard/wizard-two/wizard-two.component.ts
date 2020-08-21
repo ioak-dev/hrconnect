@@ -26,9 +26,9 @@ export class WizardTwoComponent implements OnInit {
     request['travelType'] = this.travelType;
     console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
-    if (this.travelType === 'domestic') {
+    if (this.travelType === 'Domestic') {
       this.router.navigate(['travel/cabDetail']);
-    } else if (this.travelType === 'international') {
+    } else if (this.travelType === 'International') {
       this.router.navigate(['travel/visaDetail']);
     }
   }

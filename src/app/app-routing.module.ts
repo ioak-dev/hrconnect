@@ -15,6 +15,7 @@ import { VisaComponent } from './travel/wizard/visa/visa.component';
 import { InsuranceComponent } from './travel/wizard/insurance/insurance.component';
 import { SubmitComponent } from './travel/wizard/submit/submit.component';
 import { TravelComponent } from './travel/travel/travel.component';
+import { RequestViewComponent } from './travel/request-view/request-view.component';
 
 
 const routes: Routes = [
@@ -77,6 +78,11 @@ const routes: Routes = [
   {
     path: 'travel/submit',
     component: SubmitComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'travel/view/:requestId',
+    component: RequestViewComponent,
     canActivate: [AuthGuard]
   },
   {

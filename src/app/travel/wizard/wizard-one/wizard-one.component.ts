@@ -23,7 +23,7 @@ export class WizardOneComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.newrow = {ProjectName: '', EmpId: ''};
+    this.newrow = {projectName: '', empId: ''};
     if (this.projectArray.length === 0) {
       this.projectArray.push(this.newrow);
     }
@@ -38,7 +38,7 @@ export class WizardOneComponent implements OnInit {
   }
 
   addRow(index) {
-    this.newrow = {ProjectName: '', EmpId: ''};
+    this.newrow = {projectName: '', empId: ''};
     this.projectArray.push(this.newrow);
     console.log(this.projectArray);
     return true;

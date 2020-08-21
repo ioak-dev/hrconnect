@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class VisaComponent implements OnInit {
   visaArray = [];
-  visaNew: string;
+  visaNew = 'new';
   newrow: any;
 
   constructor(public router: Router) {

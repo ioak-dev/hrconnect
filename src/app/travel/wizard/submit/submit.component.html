@@ -14,13 +14,14 @@
           </thead>
           <tbody>
           <tr *ngFor="let project of projectDetails">
-            <td>{{project.ProjectName}}</td>
-            <td>{{project.EmpId}}</td>
+            <td>{{project.projectName}}</td>
+            <td>{{project.empId}}</td>
           </tr>
           </tbody>
         </table>
       </div>
     </div>
+    
     <!--Travel Type-->
     <div *ngIf="travelType" class="card">
       <div class="card-header">
@@ -211,9 +212,10 @@
     <form>
       <div class="form-group">
         <label for="exampleFormControlTextarea1">E-mail of Project Manager</label>
-        <input [(ngModel)]="pmEmail" [ngModelOptions]="{standalone: true}" type="email" class="form-control" id="exampleFormControlTextarea1"/>
+        <input [(ngModel)]="pmEmail" [ngModelOptions]="{standalone: true}" type="email" class="form-control" id="exampleFormControlTextarea1" [disabled]="view"/>
       </div>
-      <button type="submit" class="btn btn-primary" (click)="submit()">Submit</button>
+      <button *ngIf="!view" type="submit" class="btn btn-primary" (click)="submit()">Submit</button>
+      <button *ngIf="view" class="btn btn-link" (click)="close()">Close</button>
     </form>
   </div>
 </div>

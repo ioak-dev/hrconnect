@@ -21,10 +21,10 @@
         <tbody>
         <tr *ngFor="let dynamic of projectArray; let i = index;">
           <td>
-            <input [(ngModel)]="projectArray[i].ProjectName" class="form-control" type="text"/>
+            <input [(ngModel)]="projectArray[i].projectName" class="form-control" type="text"/>
           </td>
           <td>
-            <input [(ngModel)]="projectArray[i].EmpId" class="form-control" type="text"/>
+            <input [(ngModel)]="projectArray[i].empId" class="form-control" type="text"/>
           </td>
           <td>
             <i (click)="deleteRow(i)" >

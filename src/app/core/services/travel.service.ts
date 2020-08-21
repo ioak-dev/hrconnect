@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import { Observable} from 'rxjs';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { EnvService } from 'src/app/env.service';
 import { map } from 'rxjs/operators';
+
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
@@ -19,6 +20,13 @@ export class TravelService {
 
   submit(request): Observable<any> {
     return this.http.put(this.env.backendUrl + `/wizard/create`, request, httpOptions)
+    .pipe(map(
+      (response: HttpResponse<any>) => response
+    ));
+  }
+
+  getById(requestId): Observable<any> {
+    return this.http.get(this.env.backendUrl + `/wizard/${requestId}`)
     .pipe(map(
       (response: HttpResponse<any>) => response
     ));
