@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { TravelService } from 'src/app/core/services/travel.service';
+import {Component, OnInit, Input} from '@angular/core';
+import {TravelService} from 'src/app/core/services/travel.service';
 import {ITravel} from '../../models/travel';
 import {IProject} from '../../models/project';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-submit',
@@ -21,9 +21,12 @@ export class SubmitComponent implements OnInit {
   visaDetails = [];
   insuranceDetails = [];
   pmEmail: string;
+  userDetail: any;
 
   constructor(private travelService: TravelService,
-    private router: Router) { }
+              private router: Router) {
+
+  }
 
   ngOnInit() {
     setTimeout(() => {
@@ -45,6 +48,9 @@ export class SubmitComponent implements OnInit {
       this.insuranceDetails = request.insuranceDetails;
       this.pmEmail = request.pmEmail;
     }
+    if (sessionStorage.PersonDetails) {
+      this.userDetail = JSON.parse(sessionStorage.getItem('PersonDetails'));
+    }
   }
 
   submit() {
@@ -63,21 +69,21 @@ export class SubmitComponent implements OnInit {
       visaDetails: request.visaDetails,
       insuranceDetails: request.insuranceDetails,
       pmEmail: this.pmEmail,
-      createdBy: sessionStorage.getItem('userDisplayName')
+      createdBy: this.userDetail.id
     };
     this.travelService.submit(payload)
-    .subscribe(
-      (response) => {
-        console.log(response);
-        this.router.navigate(['travel']);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      .subscribe(
+        (response) => {
+          console.log(response);
+          this.router.navigate(['travel']);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
   close() {
-    this.router.navigate(['/travel'])
+    this.router.navigate(['/travel']);
   }
 }

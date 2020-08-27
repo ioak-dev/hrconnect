@@ -31,4 +31,16 @@ export class TravelService {
       (response: HttpResponse<any>) => response
     ));
   }
+  getallRequest(userId): Observable<any> {
+    return this.http.get(this.env.backendUrl + `/wizard/APPLICANT/${userId}`)
+      .pipe(map(
+        (response: HttpResponse<any>) => response
+      ));
+  }
+  getPersonDetail(email): Observable<any> {
+    return this.http.get(this.env.backendUrl + `/person/email/${email}`)
+      .pipe(map(
+        (response: HttpResponse<any>) => response
+      ));
+  }
 }

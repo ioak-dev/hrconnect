@@ -1,3 +1,21 @@
 button {
-  margin: 0 0 0 10px;
+  margin:10px;
+  float: right;
+}
+
+tr:hover {
+  background-color: lightblue !important;
+}
+
+tr:nth-child(even) {
+  background-color: azure
+}
+a{
+  cursor: pointer;
+  color: #007bff;
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+  color: #0056b3;
 }

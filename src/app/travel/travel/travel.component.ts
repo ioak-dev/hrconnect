@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import * as data from './data.json';
-import { TravelService } from 'src/app/core/services/travel.service';
+import {TravelService} from 'src/app/core/services/travel.service';
 
 @Component({
   selector: 'app-travel',
@@ -10,50 +10,66 @@ import { TravelService } from 'src/app/core/services/travel.service';
 })
 export class TravelComponent implements OnInit {
   data: any;
-  requestId = '5f3fbca21aed1d53b0c8690c';
+  email: string;
+  requestList: any;
 
   constructor(private router: Router,
-    private travelService: TravelService) {
+              private travelService: TravelService) {
     this.data = data;
+    this.email = sessionStorage.getItem('userSigninName').toLowerCase();
+    this.getPersonByEmail();
   }
 
   ngOnInit() {
+
   }
+
+  getPersonByEmail() {
+    this.travelService.getPersonDetail(this.email).subscribe(result => {
+      console.log(result);
+      sessionStorage.setItem('PersonDetails', JSON.stringify(result));
+      this.travelService.getallRequest(result.id).subscribe(item => {
+        this.requestList = item;
+        console.log(item);
+      });
+    });
+  }
+
 
   create() {
     sessionStorage.removeItem('request');
     this.router.navigate(['travel/empDetail']);
   }
 
-  edit() {
+  edit(reqId) {
     sessionStorage.removeItem('request');
-    this.travelService.getById(this.requestId)
-    .subscribe(
-      (response) => {
-        console.log(response);
-        sessionStorage.setItem('request', JSON.stringify(response));
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.travelService.getById(reqId)
+      .subscribe(
+        (response) => {
+          console.log(response);
+          sessionStorage.setItem('request', JSON.stringify(response));
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     setTimeout(() => {
       this.router.navigate(['travel/empDetail']);
     }, 1000);
   }
 
-  view() {
+  view(reqId) {
     sessionStorage.removeItem('request');
-    this.travelService.getById(this.requestId)
-    .subscribe(
-      (response) => {
-        console.log(response);
-        sessionStorage.setItem('request', JSON.stringify(response));
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-    this.router.navigate([`travel/view/${this.requestId}`]);
+    this.travelService.getById(reqId)
+      .subscribe(
+        (response) => {
+          console.log(response);
+          sessionStorage.setItem('request', JSON.stringify(response));
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    this.router.navigate([`travel/view/${reqId}`]);
   }
 }
