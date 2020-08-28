@@ -55,42 +55,13 @@ export class SubmitComponent implements OnInit {
     }
   }
 
-  submit() {
-    const request = JSON.parse(sessionStorage.getItem('request'));
-    request['pmEmail'] = this.pmEmail;
-    console.log(request);
-    sessionStorage.setItem('request', JSON.stringify(request));
-    const payload = {
-      projectDetails: request.projectDetails,
-      travelType: request.travelType,
-      cabDetails: request.cabDetails,
-      trainDetails: request.trainDetails,
-      busDetails: request.busDetails,
-      flightDetails: request.flightDetails,
-      hotelDetails: request.hotelDetails,
-      visaDetails: request.visaDetails,
-      insuranceDetails: request.insuranceDetails,
-      pmEmail: this.pmEmail,
-      createdBy: this.userDetail.id
-    };
-    this.travelService.submit(payload)
-    .subscribe(
-      (response) => {
-        console.log(response);
-        this.router.navigate(['travel']);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-
   create() {
     const request = JSON.parse(sessionStorage.getItem('request'));
     request['pmEmail'] = this.pmEmail;
     console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
     const payload = {
+      id: request.id,
       projectDetails: request.projectDetails,
       travelType: request.travelType,
       cabDetails: request.cabDetails,

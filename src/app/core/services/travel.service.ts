@@ -18,13 +18,6 @@ export class TravelService {
     private env: EnvService) {
   }
 
-  submit(request): Observable<any> {
-    return this.http.put(this.env.backendUrl + `/wizard/submit`, request, httpOptions)
-    .pipe(map(
-      (response: HttpResponse<any>) => response
-    ));
-  }
-
   create(request, userId): Observable<any> {
     return this.http.put(this.env.backendUrl + `/wizard/create?userId=${userId}`, request, httpOptions)
     .pipe(map(

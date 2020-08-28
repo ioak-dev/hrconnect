@@ -12,6 +12,9 @@
   display: flex;
   justify-content: center;
 }
-.card{
+.card {
   margin-bottom: 10px;
+}
+.btn {
+  margin: 0 10px 0 0;
 }
