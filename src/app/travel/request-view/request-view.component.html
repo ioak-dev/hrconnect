@@ -1,1 +1,231 @@
-<app-submit [view]="true"></app-submit>
+<div class="container">
+
+
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button *ngIf="(travelRequest?.status === 'DRAFT' || travelRequest?.status === 'OPEN') && (travelRequest.createdBy === authService.loggedInUser?.id)" class="btn btn-primary" (click)="edit()">Edit</button>
+    <!-- <span *ngIf="(request?.status.description === 'L1' && authService.loggedInUser?.role === 'L1') || (request?.status.description === 'L2' && authService.loggedInUser?.role === 'L2') || (request?.status.description === 'Administrator ' && authService.loggedInUser?.role === 'Administrator ')"> -->
+      <button *ngIf="isRequestApprover || isRequestAdmin" class="btn btn-success" (click)="approve()">Approve</button>
+      <button *ngIf="isRequestApprover || isRequestAdmin" class="btn btn-danger" (click)="reject()">Reject</button>
+    <!-- </span> -->
+    <button class="btn btn-warning" (click)="withdraw()">Withdraw</button>
+    <button class="btn btn-dark" routerLink="/travel">Close</button>
+  </div>
+
+  <div class="travel-options">
+    <div *ngIf="projectDetails" class="card">
+      <div class="card-header">
+        Project Details
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Project Name</th>
+            <th>EmployeeId</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let project of projectDetails">
+            <td>{{project.projectName}}</td>
+            <td>{{project.empId}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!--Travel Type-->
+    <div *ngIf="travelType" class="card">
+      <div class="card-header">
+        Travel Type
+      </div>
+      <div class="card-body">
+        <div>Travel Type : {{travelType}}</div>
+      </div>
+    </div>
+    <!--visa Details-->
+    <div *ngIf="visaDetails" class="card">
+      <div class="card-header">
+        Visa Details
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Country</th>
+            <th>Visa Type</th>
+            <th>Entry Type</th>
+            <th>Comment</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let visa of visaDetails">
+            <td>{{visa.country}}</td>
+            <td>{{visa.visaType}}</td>
+            <td>{{visa.entryType}}</td>
+            <td>{{visa.comment}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!--insurance Details-->
+    <div *ngIf="insuranceDetails" class="card">
+      <div class="card-header">
+        Insurance Details
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Country</th>
+            <th>Comment</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let insurance of insuranceDetails">
+            <td>{{insurance.country}}</td>
+            <td>{{insurance.comment}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <!--Cab Details-->
+    <div *ngIf="cabDetails" class="card">
+      <div class="card-header">
+        Cab Details
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Comments</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let cab of cabDetails">
+            <td>{{cab.source}}</td>
+            <td>{{cab.destination}}</td>
+            <td>{{cab.comment}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!--train Details-->
+    <div *ngIf="trainDetails" class="card">
+      <div class="card-header">
+        Train Details
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Comments</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let train of trainDetails">
+            <td>{{train.source}}</td>
+            <td>{{train.destination}}</td>
+            <td>{{train.comment}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!--bus Details-->
+    <div *ngIf="busDetails" class="card">
+      <div class="card-header">
+        Bus Details
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Comments</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let bus of busDetails">
+            <td>{{bus.source}}</td>
+            <td>{{bus.destination}}</td>
+            <td>{{bus.comment}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!--flightDetails-->
+    <div *ngIf="flightDetails" class="card">
+      <div class="card-header">
+        Flight Details
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Comments</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let flight of flightDetails">
+            <td>{{flight.source}}</td>
+            <td>{{flight.destination}}</td>
+            <td>{{flight.comment}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!--Hotel Details-->
+    <div *ngIf="hotelDetails" class="card">
+      <div class="card-header">
+        Hotel Details
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Location</th>
+            <th>Check-in</th>
+            <th>Check-out</th>
+            <th>Comments</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let hotel of hotelDetails">
+            <td>{{hotel.location}}</td>
+            <td>{{hotel.checkinDate}}</td>
+            <td>{{hotel.checkoutDate}}</td>
+            <td>{{hotel.comment}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <form>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">E-mail of Project Manager</label>
+        <input [(ngModel)]="pmEmail" [ngModelOptions]="{standalone: true}" type="email" class="form-control" id="exampleFormControlTextarea1" disabled/>
+      </div>
+    </form>
+  </div>
+</div>

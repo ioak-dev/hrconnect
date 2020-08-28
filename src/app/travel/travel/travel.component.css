@@ -2,20 +2,15 @@ button {
   margin:10px;
   float: right;
 }
-
 tr:hover {
-  background-color: lightblue !important;
+  background-color: azure !important;
 }
-
-tr:nth-child(even) {
-  background-color: azure
-}
-a{
+a {
   cursor: pointer;
   color: #007bff;
   text-decoration: none;
 }
-a:hover{
+a:hover {
   text-decoration: underline;
   color: #0056b3;
 }

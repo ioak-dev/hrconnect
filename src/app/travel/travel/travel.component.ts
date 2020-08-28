@@ -27,10 +27,9 @@ export class TravelComponent implements OnInit {
   getPersonByEmail() {
     this.travelService.getPersonDetail(this.email).subscribe(result => {
       console.log(result);
-      sessionStorage.setItem('PersonDetails', JSON.stringify(result));
+      sessionStorage.setItem('userData', JSON.stringify(result));
       this.travelService.getallRequest(result.id).subscribe(item => {
         this.requestList = item;
-        console.log(item);
       });
     });
   }
@@ -41,35 +40,7 @@ export class TravelComponent implements OnInit {
     this.router.navigate(['travel/empDetail']);
   }
 
-  edit(reqId) {
-    sessionStorage.removeItem('request');
-    this.travelService.getById(reqId)
-      .subscribe(
-        (response) => {
-          console.log(response);
-          sessionStorage.setItem('request', JSON.stringify(response));
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    setTimeout(() => {
-      this.router.navigate(['travel/empDetail']);
-    }, 1000);
-  }
-
   view(reqId) {
-    sessionStorage.removeItem('request');
-    this.travelService.getById(reqId)
-      .subscribe(
-        (response) => {
-          console.log(response);
-          sessionStorage.setItem('request', JSON.stringify(response));
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
     this.router.navigate([`travel/view/${reqId}`]);
   }
 }

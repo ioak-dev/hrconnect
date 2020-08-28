@@ -214,6 +214,7 @@
         <label for="exampleFormControlTextarea1">E-mail of Project Manager</label>
         <input [(ngModel)]="pmEmail" [ngModelOptions]="{standalone: true}" type="email" class="form-control" id="exampleFormControlTextarea1" [disabled]="view"/>
       </div>
+      <button *ngIf="!view" type="submit" class="btn btn-primary" (click)="create()">Create</button>
       <button *ngIf="!view" type="submit" class="btn btn-primary" (click)="submit()">Submit</button>
       <button *ngIf="view" class="btn btn-link" (click)="close()">Close</button>
     </form>

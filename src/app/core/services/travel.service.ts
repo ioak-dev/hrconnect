@@ -19,7 +19,14 @@ export class TravelService {
   }
 
   submit(request): Observable<any> {
-    return this.http.put(this.env.backendUrl + `/wizard/create`, request, httpOptions)
+    return this.http.put(this.env.backendUrl + `/wizard/submit`, request, httpOptions)
+    .pipe(map(
+      (response: HttpResponse<any>) => response
+    ));
+  }
+
+  create(request, userId): Observable<any> {
+    return this.http.put(this.env.backendUrl + `/wizard/create?userId=${userId}`, request, httpOptions)
     .pipe(map(
       (response: HttpResponse<any>) => response
     ));
@@ -31,16 +38,35 @@ export class TravelService {
       (response: HttpResponse<any>) => response
     ));
   }
+
   getallRequest(userId): Observable<any> {
-    return this.http.get(this.env.backendUrl + `/wizard/APPLICANT/${userId}`)
-      .pipe(map(
-        (response: HttpResponse<any>) => response
-      ));
+    return this.http.get(this.env.backendUrl + `/wizard/user/${userId}`)
+    .pipe(map(
+      (response: HttpResponse<any>) => response
+    ));
   }
+
   getPersonDetail(email): Observable<any> {
-    return this.http.get(this.env.backendUrl + `/person/email/${email}`)
-      .pipe(map(
-        (response: HttpResponse<any>) => response
-      ));
+    return this.http.get(this.env.backendUrl + `/person/email/${email }`)
+    .pipe(map(
+      (response: HttpResponse<any>) => response
+    ));
+  }
+
+  getRoleDetail(userId): Observable<any> {
+    return this.http.get(this.env.backendUrl + `/role?userId=${userId}`)
+    .pipe(map(
+      (response: HttpResponse<any>) => response
+    ));
+  }
+
+  approve(requestId): Observable<any> {
+    return this.http.post(this.env.backendUrl + `/wizard/approve/${requestId}`, httpOptions)
+    .pipe(map(response => response));
+  }
+
+  reject(requestId): Observable<any> {
+    return this.http.post(this.env.backendUrl + `/wizard/reject/${requestId}`, httpOptions)
+    .pipe(map(response => response));
   }
 }

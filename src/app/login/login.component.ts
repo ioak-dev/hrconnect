@@ -11,11 +11,11 @@ export class LoginComponent implements OnInit {
   loggedIn: boolean;
 
   constructor(private authService: AuthService) {
+    authService.init();
   }
 
   ngOnInit() {
     this.initialize();
-    this.authService.init();
   }
 
   refresh() {
