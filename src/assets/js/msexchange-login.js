@@ -1,7 +1,8 @@
 $(function() {
   // App configuration
   var authEndpoint = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize?';
-  var redirectUri = 'http://localhost:4200/dashboard';
+  var redirectUri = 'https://hrconnect.ioak.org/dashboard';
+  // var redirectUri = 'http://localhost:4200/dashboard';
   var appId = 'ce67266b-a20b-4cd3-9c17-f56a442dd157';
   var scopes = 'openid profile User.Read Mail.Read Calendars.Read Contacts.Read';
 
