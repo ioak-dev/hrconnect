@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class EnvService {
   // public backendUrl = 'http://localhost:8080';
-  public backendUrl = 'https://hrconnect-service.herokuapp.com/';
+  public backendUrl = 'https://hrconnect-service.herokuapp.com';
 
   constructor() { }
 }
