@@ -3,8 +3,8 @@ $(function() {
   var authEndpoint = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize?';
   var redirectUri = 'https://hrconnect.ioak.org/dashboard';
   // var redirectUri = 'http://localhost:4200/dashboard';
-  var appId = 'ce67266b-a20b-4cd3-9c17-f56a442dd157';
-  var scopes = 'openid profile User.Read Mail.Read Calendars.Read Contacts.Read';
+  var appId = '00f73d56-6d8b-44fe-8b5b-0e2f1ad6557e';
+  var scopes = 'openid profile User.Read';
 
   // Check for browser support for sessionStorage
   if (typeof(Storage) === 'undefined') {
