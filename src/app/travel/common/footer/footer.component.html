@@ -1,0 +1,23 @@
+<div class="button-group">
+  <button *ngIf="activeUrl !== 'submit'" type="button" class="btn btn-outline-primary" (click)="previousClicked()">
+    <i class="material-icons">navigate_before</i>
+    Previous
+  </button>
+  <button *ngIf="activeUrl !== 'submit'" type="button" class="btn btn-outline-primary" (click)="nextClicked()">
+    Next
+    <i class="material-icons">navigate_next</i>
+  </button>
+  <button *ngIf="activeUrl === 'submit'" type="button" class="btn btn-outline-danger" (click)="cancelClicked()">
+    <i class="material-icons">close</i>
+    Cancel
+  </button>
+  <button *ngIf="activeUrl === 'submit'" type="button" class="btn btn-outline-primary" (click)="saveClicked()">
+    <i class="material-icons">save</i>
+    Save as Draft
+  </button>
+  <button *ngIf="activeUrl === 'submit'" type="button" class="btn btn-outline-success" (click)="submitClicked()">
+    <i class="material-icons">check</i>
+    Submit
+  </button>
+
+</div>

@@ -3,7 +3,8 @@ import {TravelService} from 'src/app/core/services/travel.service';
 import {ITravel} from '../../models/travel';
 import {IProject} from '../../models/project';
 import {Router} from '@angular/router';
-import { AuthService } from 'src/app/core/services/auth.service';
+import {AuthService} from 'src/app/core/services/auth.service';
+import {EventService} from '../../common/Services/event.service';
 
 @Component({
   selector: 'app-submit',
@@ -26,6 +27,7 @@ export class SubmitComponent implements OnInit {
 
   constructor(private travelService: TravelService,
               private router: Router,
+              public eventService: EventService,
               public authService: AuthService) {
     authService.init();
   }
@@ -34,6 +36,15 @@ export class SubmitComponent implements OnInit {
     setTimeout(() => {
       this.loadDataFromStore();
     }, 1000);
+    this.eventService.clickedEvent.subscribe(data => {
+      if (data === 'submit') {
+        this.create();
+      } else if (data === 'save') {
+        this.create();
+      } else if (data === 'cancel') {
+        this.close();
+      }
+    });
   }
 
   loadDataFromStore() {

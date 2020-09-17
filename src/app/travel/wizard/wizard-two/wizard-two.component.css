@@ -1,23 +1,13 @@
 .travel-options {
-  margin: 0 20%;
-  display: block;
-}
+  margin-top: 10%;
 
-.button-group {
-  display: block;
 }
-
-.next-button {
-  float: right;
-  display: block;
-}
-
 h4 {
   margin-left: 20px;
   margin-bottom: 2rem;
 }
 
-.radio-group {
+.radio-group, h4 {
   display: flex;
   justify-content: center;
 }

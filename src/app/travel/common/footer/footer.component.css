@@ -1,0 +1,14 @@
+.button-group {
+  margin-top: 5%;
+  position: fixed;
+  bottom: 1%;
+  right: 2%
+}
+
+button {
+  margin: 0 10px;
+}
+
+i {
+  vertical-align: middle;
+}

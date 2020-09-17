@@ -1,18 +1,12 @@
 .travel-options {
-  /*margin: 0 20%;*/
-  display: block;
+  margin-top: 10%;
 }
 
-.button-group {
-  display: block;
+table{
+  box-shadow: none;
 }
-
-.next-button {
-  float: right;
-  display: block;
+.material-icons{
+  font-size: 22px;
+  cursor: pointer;
+  vertical-align: middle;
 }
-.project-detail{
-  display: flex;
-  justify-content: center;
-}
-

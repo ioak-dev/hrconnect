@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ITravel} from '../../models/travel';
 import {Router} from '@angular/router';
+import {EventService} from '../../common/Services/event.service';
 
 @Component({
   selector: 'app-wizard-five',
@@ -12,7 +13,9 @@ export class WizardFiveComponent implements OnInit {
   newrow: any;
 
   constructor(
-    public router: Router
+    public router: Router,
+    public eventService: EventService
+
   ) {
     if (sessionStorage.request) {
       const request = JSON.parse(sessionStorage.getItem('request'));
@@ -21,6 +24,13 @@ export class WizardFiveComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.eventService.clickedEvent.subscribe(data => {
+      if (data === 'next') {
+        this.navigateNext();
+      } else if (data === 'previous') {
+        this.navigatePrevious();
+      }
+    });
     this.newrow = {source: '', destination: '', comment: ''};
     if (this.trainArray.length === 0) {
       this.trainArray.push(this.newrow);
@@ -30,9 +40,8 @@ export class WizardFiveComponent implements OnInit {
   navigateNext() {
     const request = JSON.parse(sessionStorage.getItem('request'));
     request['trainDetails'] = this.trainArray;
-    console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/busDetail']);
+    this.router.navigate(['travel/application/busDetail']);
   }
 
   navigatePrevious() {
@@ -40,7 +49,7 @@ export class WizardFiveComponent implements OnInit {
     request['trainDetails'] = this.trainArray;
     console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/flightDetail']);
+    this.router.navigate(['travel/application/flightDetail']);
   }
 
   addRow(index) {

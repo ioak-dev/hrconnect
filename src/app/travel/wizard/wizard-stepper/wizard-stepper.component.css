@@ -1,0 +1,68 @@
+
+
+.steps {
+  width: 100%;
+  background-color: #FFF;
+  padding: 14px 0;
+  position: relative;
+  margin: auto;
+  height: 500px;
+  overflow-y: scroll;
+}
+::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}
+
+.step {
+  padding: 5px 10px 15px 50px;
+  position: relative;
+  transition: all 0.4s ease-in-out;
+  background-color: #FFF;
+}
+
+.step::before {
+  top: 10px;
+  content: '';
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  background-color: rgb(198, 198, 198);
+  border-radius: 15px;
+  left: calc(50px / 2);
+  transform: translateX(-45%);
+  z-index: 2;
+}
+
+.step::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  background-color: rgb(198, 198, 198);
+  left: calc(50px / 2);
+  top: 0;
+  z-index: 1;
+}
+
+.header {
+  user-select: none;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+}
+.step-active::before{
+  background-color: limegreen !important;
+}
+
+.step-visited::before{
+  background-color: #007bff;
+}
+.hide-visa,
+.hide-insurance{
+  display: none;
+}

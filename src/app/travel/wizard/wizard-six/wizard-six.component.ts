@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ITravel} from '../../models/travel';
 import {Router} from '@angular/router';
+import {EventService} from '../../common/Services/event.service';
 
 @Component({
   selector: 'app-wizard-six',
@@ -12,7 +13,8 @@ export class WizardSixComponent implements OnInit {
   newrow: any;
 
   constructor(
-    public router: Router
+    public router: Router,
+    public eventService: EventService
   ) {
     if (sessionStorage.request) {
       const request = JSON.parse(sessionStorage.getItem('request'));
@@ -21,6 +23,13 @@ export class WizardSixComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.eventService.clickedEvent.subscribe(data => {
+      if (data === 'next') {
+        this.navigateNext();
+      } else if (data === 'previous') {
+        this.navigatePrevious();
+      }
+    });
     this.newrow = {source: '', destination: '', comment: ''};
     if (this.busArray.length === 0) {
       this.busArray.push(this.newrow);
@@ -32,7 +41,7 @@ export class WizardSixComponent implements OnInit {
     request['busDetails'] = this.busArray;
     console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/hotelDetail']);
+    this.router.navigate(['travel/application/hotelDetail']);
   }
 
   navigatePrevious() {
@@ -40,7 +49,7 @@ export class WizardSixComponent implements OnInit {
     request['busDetails'] = this.busArray;
     console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/trainDetail']);
+    this.router.navigate(['travel/application/trainDetail']);
   }
 
   addRow(index) {

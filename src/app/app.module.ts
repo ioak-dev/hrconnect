@@ -23,6 +23,11 @@ import { InsuranceComponent } from './travel/wizard/insurance/insurance.componen
 import { SubmitComponent } from './travel/wizard/submit/submit.component';
 import { TravelComponent } from './travel/travel/travel.component';
 import { RequestViewComponent } from './travel/request-view/request-view.component';
+import { WizardStepperComponent } from './travel/wizard/wizard-stepper/wizard-stepper.component';
+import { LeftPanelComponent } from './travel/wizard/left-panel/left-panel.component';
+import { RightPanelComponent } from './travel/wizard/right-panel/right-panel.component';
+import { WizardsComponent } from './travel/wizard/wizards/wizards.component';
+import { FooterComponent } from './travel/common/footer/footer.component';
 
 
 @NgModule({
@@ -43,7 +48,12 @@ import { RequestViewComponent } from './travel/request-view/request-view.compone
     InsuranceComponent,
     SubmitComponent,
     TravelComponent,
-    RequestViewComponent
+    RequestViewComponent,
+    WizardStepperComponent,
+    LeftPanelComponent,
+    RightPanelComponent,
+    WizardsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

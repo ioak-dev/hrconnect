@@ -1,16 +1,8 @@
 .travel-options {
-  margin: 0 20%;
-  display: block;
+  margin-top: 10%;
 }
 
-.button-group {
-  display: block;
-}
 
-.next-button {
-  float: right;
-  display: block;
-}
 .project-detail{
   display: flex;
   justify-content: center;

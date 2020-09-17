@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {EventService} from '../../common/Services/event.service';
 
 @Component({
   selector: 'app-visa',
@@ -11,7 +12,10 @@ export class VisaComponent implements OnInit {
   visaNew = 'new';
   newrow: any;
 
-  constructor(public router: Router) {
+  constructor(
+    public router: Router,
+    public eventService: EventService
+  ) {
     if (sessionStorage.request) {
       const request = JSON.parse(sessionStorage.getItem('request'));
       this.visaArray = request.visaDetails ? request.visaDetails : [];
@@ -19,6 +23,13 @@ export class VisaComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.eventService.clickedEvent.subscribe(data => {
+      if (data === 'next') {
+        this.navigateNext();
+      } else if (data === 'previous') {
+        this.navigatePrevious();
+      }
+    });
     this.newrow = {country: '', visaType: '', entryType: '', comment: ''};
     if (this.visaArray.length === 0) {
       this.visaArray.push(this.newrow);
@@ -30,7 +41,7 @@ export class VisaComponent implements OnInit {
     request['visaDetails'] = this.visaArray;
     console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/travelType']);
+    this.router.navigate(['travel/application/travelType']);
   }
 
   navigateNext() {
@@ -38,7 +49,7 @@ export class VisaComponent implements OnInit {
     request['visaDetails'] = this.visaArray;
     console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/insuranceDetail']);
+    this.router.navigate(['travel/application/insuranceDetail']);
   }
 
   addRow(index) {

@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+body{
+  overflow-y: hidden;
+}
 
 * {
     font-family: 'Source Sans Pro', sans-serif;
@@ -22,4 +25,15 @@ button, .btn {
 
 .card-header {
   border: none !important;
+}
+table {
+  box-shadow: none;
+}
+thead > tr {
+  color: cadetblue;
+  border-bottom: 0.5px solid gray;
+}
+tbody>tr{
+  border-bottom: 0.25px solid lightgrey;
+
 }

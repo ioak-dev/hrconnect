@@ -1,22 +1,13 @@
 <div class="container">
   <div class="travel-options">
-    <div class="button-group">
-      <button type="button" class="btn btn-primary" (click)="navigatePrevious()">
-        Previous
-      </button>
-      <button type="button" class="btn btn-primary next-button" (click)="navigateNext()">
-        Next
-      </button>
-    </div>
-    <br><br><br>
     <h4>What type of travel request would you like to create?</h4>
     <div class="radio-group">
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" [(ngModel)]="travelType" name="inlineRadioOptions" id="inlineRadio1" value="Domestic">
+        <input class="form-check-input" type="radio" (change)="radioSelected('domestic')" [(ngModel)]="travelType" name="inlineRadioOptions" id="inlineRadio1" value="Domestic">
         <label class="form-check-label" for="inlineRadio1">Domestic</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" [(ngModel)]="travelType" name="inlineRadioOptions" id="inlineRadio2" value="International">
+        <input class="form-check-input" type="radio" (change)="radioSelected('international')" [(ngModel)]="travelType" name="inlineRadioOptions" id="inlineRadio2" value="International">
         <label class="form-check-label" for="inlineRadio2">International</label>
       </div>
     </div>

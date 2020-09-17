@@ -1,14 +1,15 @@
 .travel-options {
-  display: block;
+  margin-top: 10%;
 }
-.button-group {
-  display: block;
+
+.visaType{
+  margin-bottom: 2%;
 }
-.next-button {
-  float: right;
-  display: block;
+table{
+  box-shadow: none;
 }
-.project-detail{
-  display: flex;
-  justify-content: center;
+.material-icons{
+  font-size: 22px;
+  cursor: pointer;
+  vertical-align: middle;
 }

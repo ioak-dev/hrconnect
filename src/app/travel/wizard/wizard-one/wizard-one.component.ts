@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {IProject} from '../../models/project';
+import {EventService} from '../../common/Services/event.service';
 
 @Component({
   selector: 'app-wizard-one',
@@ -8,44 +9,42 @@ import {IProject} from '../../models/project';
   styleUrls: ['./wizard-one.component.css']
 })
 export class WizardOneComponent implements OnInit {
-  projectArray: Array<IProject> = [];
-  newrow: any = {};
+  projectDetails = {
+    projectName: '',
+    email: ''
+  };
 
   constructor(
-    public router: Router
+    public router: Router,
+    public eventService: EventService
   ) {
     if (sessionStorage.request) {
       const request = JSON.parse(sessionStorage.getItem('request'));
-      this.projectArray = request.projectDetails ? request.projectDetails : [];
+      this.projectDetails = request.projectDetails ? request.projectDetails : {};
     } else {
       sessionStorage.setItem('request', JSON.stringify({}));
+    }
+    if (sessionStorage.userData) {
+      const user = JSON.parse(sessionStorage.getItem('userData'));
+      this.projectDetails.email = user.email ? user.email : '';
     }
   }
 
   ngOnInit() {
-    this.newrow = {projectName: '', empId: ''};
-    if (this.projectArray.length === 0) {
-      this.projectArray.push(this.newrow);
-    }
+    this.eventService.clickedEvent.subscribe(data => {
+      if (data === 'next') {
+        this.navigateNext();
+      }
+    });
   }
 
   navigateNext() {
     const request = JSON.parse(sessionStorage.getItem('request'));
-    request['projectDetails'] = this.projectArray;
+    request['projectDetails'] = this.projectDetails;
     console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/travelType']);
+    this.router.navigate(['travel/application/travelType']);
   }
 
-  addRow(index) {
-    this.newrow = {projectName: '', empId: ''};
-    this.projectArray.push(this.newrow);
-    console.log(this.projectArray);
-    return true;
-  }
 
-  deleteRow(index) {
-    this.projectArray.splice(index, 1);
-    return true;
-  }
 }

@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Project Details",
+    "url": "projectDetail"
+  },
+  {
+    "title": "Travel Type",
+    "url": "travelType"
+  },
+  {
+    "title": "Visa Details",
+    "url": "visaDetail"
+  },
+  {
+    "title": "Insurance Details",
+    "url": "insuranceDetail"
+  },
+  {
+    "title": "Cab Details",
+    "url": "cabDetail"
+  },
+  {
+    "title": "Flight Details",
+    "url": "flightDetail"
+  },
+  {
+    "title": "Train Details",
+    "url": "trainDetail"
+  },
+  {
+    "title": "Bus Details",
+    "url": "busDetail"
+  },
+  {
+    "title": "Hotel Details",
+    "url": "hotelDetail"
+  },
+  {
+    "title": "Summary",
+    "url": "submit"
+  }
+]

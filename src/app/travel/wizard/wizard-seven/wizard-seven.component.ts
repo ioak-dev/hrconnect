@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {EventService} from '../../common/Services/event.service';
 
 @Component({
   selector: 'app-wizard-seven',
@@ -11,7 +12,8 @@ export class WizardSevenComponent implements OnInit {
   newrow: any;
 
   constructor(
-    public router: Router
+    public router: Router,
+    public eventService: EventService
   ) {
     if (sessionStorage.request) {
       const request = JSON.parse(sessionStorage.getItem('request'));
@@ -20,6 +22,13 @@ export class WizardSevenComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.eventService.clickedEvent.subscribe(data => {
+      if (data === 'next') {
+        this.navigateNext();
+      } else if (data === 'previous') {
+        this.navigatePrevious();
+      }
+    });
     this.newrow = {location: '', checkinDate: '', checkoutDate: '', comment: ''};
     if (this.hotelArray.length === 0) {
       this.hotelArray.push(this.newrow);
@@ -29,23 +38,20 @@ export class WizardSevenComponent implements OnInit {
   navigateNext() {
     const request = JSON.parse(sessionStorage.getItem('request'));
     request['hotelDetails'] = this.hotelArray;
-    console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/submit']);
+    this.router.navigate(['travel/application/submit']);
   }
 
   navigatePrevious() {
     const request = JSON.parse(sessionStorage.getItem('request'));
     request['hotelDetails'] = this.hotelArray;
-    console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/busDetail']);
+    this.router.navigate(['travel/application/busDetail']);
   }
 
   addRow(index) {
     this.newrow = {location: '', checkinDate: '', checkoutDate: '', comment: ''};
     this.hotelArray.push(this.newrow);
-    console.log(this.hotelArray);
     return true;
   }
 

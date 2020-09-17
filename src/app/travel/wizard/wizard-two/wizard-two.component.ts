@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {EventService} from '../../common/Services/event.service';
 
 @Component({
   selector: 'app-wizard-two',
@@ -10,7 +11,8 @@ export class WizardTwoComponent implements OnInit {
   travelType: string;
 
   constructor(
-    public router: Router
+    public router: Router,
+    public eventService: EventService
   ) {
     if (sessionStorage.request) {
       const request = JSON.parse(sessionStorage.getItem('request'));
@@ -19,6 +21,17 @@ export class WizardTwoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.eventService.clickedEvent.subscribe(data => {
+      if (data === 'next') {
+        this.navigateNext();
+      } else if (data === 'previous') {
+        this.navigatePrevious();
+      }
+    });
+  }
+
+  radioSelected(value) {
+    this.eventService.buttonClicked(value);
   }
 
   navigateNext() {
@@ -27,9 +40,9 @@ export class WizardTwoComponent implements OnInit {
     console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
     if (this.travelType === 'Domestic') {
-      this.router.navigate(['travel/cabDetail']);
+      this.router.navigate(['travel/application/cabDetail']);
     } else if (this.travelType === 'International') {
-      this.router.navigate(['travel/visaDetail']);
+      this.router.navigate(['travel/application/visaDetail']);
     }
   }
 
@@ -38,6 +51,6 @@ export class WizardTwoComponent implements OnInit {
     request['travelType'] = this.travelType;
     console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/empDetail']);
+    this.router.navigate(['travel/application/projectDetail']);
   }
 }

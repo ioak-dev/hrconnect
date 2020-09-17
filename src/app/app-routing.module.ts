@@ -11,11 +11,13 @@ import {WizardSevenComponent} from './travel/wizard/wizard-seven/wizard-seven.co
 import {LoginComponent} from './login/login.component';
 import {AuthGuard} from './auth.guard';
 import {UnauthorizedComponent} from './unauthorized/unauthorized.component';
-import { VisaComponent } from './travel/wizard/visa/visa.component';
-import { InsuranceComponent } from './travel/wizard/insurance/insurance.component';
-import { SubmitComponent } from './travel/wizard/submit/submit.component';
-import { TravelComponent } from './travel/travel/travel.component';
-import { RequestViewComponent } from './travel/request-view/request-view.component';
+import {VisaComponent} from './travel/wizard/visa/visa.component';
+import {InsuranceComponent} from './travel/wizard/insurance/insurance.component';
+import {SubmitComponent} from './travel/wizard/submit/submit.component';
+import {TravelComponent} from './travel/travel/travel.component';
+import {RequestViewComponent} from './travel/request-view/request-view.component';
+import {WizardStepperComponent} from './travel/wizard/wizard-stepper/wizard-stepper.component';
+import {WizardsComponent} from './travel/wizard/wizards/wizards.component';
 
 
 const routes: Routes = [
@@ -31,54 +33,61 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'travel/empDetail',
-    component: WizardOneComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'travel/travelType',
-    component: WizardTwoComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'travel/cabDetail',
-    component: WizardThreeComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'travel/flightDetail',
-    component: WizardFourComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'travel/trainDetail',
-    component: WizardFiveComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'travel/busDetail',
-    component: WizardSixComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'travel/hotelDetail',
-    component: WizardSevenComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'travel/visaDetail',
-    component: VisaComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'travel/insuranceDetail',
-    component: InsuranceComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'travel/submit',
-    component: SubmitComponent,
-    canActivate: [AuthGuard]
+    path: 'travel/application',
+    component: WizardsComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'projectDetail',
+        component: WizardOneComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'travelType',
+        component: WizardTwoComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'cabDetail',
+        component: WizardThreeComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'flightDetail',
+        component: WizardFourComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'trainDetail',
+        component: WizardFiveComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'busDetail',
+        component: WizardSixComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'hotelDetail',
+        component: WizardSevenComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'visaDetail',
+        component: VisaComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'insuranceDetail',
+        component: InsuranceComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'submit',
+        component: SubmitComponent,
+        canActivate: [AuthGuard]
+      },
+    ]
   },
   {
     path: 'travel/view/:requestId',

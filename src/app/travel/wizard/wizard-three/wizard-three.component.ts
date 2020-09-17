@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ITravel} from '../../models/travel';
 import {Router} from '@angular/router';
+import {EventService} from '../../common/Services/event.service';
 
 @Component({
   selector: 'app-wizard-three',
@@ -12,7 +13,8 @@ export class WizardThreeComponent implements OnInit {
   newrow: any = {};
 
   constructor(
-    public router: Router
+    public router: Router,
+    public eventService: EventService
   ) {
     if (sessionStorage.request) {
       const request = JSON.parse(sessionStorage.getItem('request'));
@@ -21,6 +23,13 @@ export class WizardThreeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.eventService.clickedEvent.subscribe(data => {
+      if (data === 'next') {
+        this.navigateNext();
+      } else if (data === 'previous') {
+        this.navigatePrevious();
+      }
+    });
     this.newrow = {source: '', destination: '', comment: ''};
     if (this.cabArray.length === 0) {
       this.cabArray.push(this.newrow);
@@ -30,17 +39,15 @@ export class WizardThreeComponent implements OnInit {
   navigateNext() {
     const request = JSON.parse(sessionStorage.getItem('request'));
     request['cabDetails'] = this.cabArray;
-    console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/flightDetail']);
+    this.router.navigate(['travel/application/flightDetail']);
   }
 
   navigatePrevious() {
     const request = JSON.parse(sessionStorage.getItem('request'));
     request['cabDetails'] = this.cabArray;
-    console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/travelType']);
+    this.router.navigate(['travel/application/travelType']);
   }
 
   addRow(index) {

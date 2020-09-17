@@ -37,7 +37,7 @@ export class TravelComponent implements OnInit {
 
   create() {
     sessionStorage.removeItem('request');
-    this.router.navigate(['travel/empDetail']);
+    this.router.navigate(['travel/application/projectDetail']);
   }
 
   view(reqId) {

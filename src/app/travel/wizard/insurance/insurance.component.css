@@ -1,14 +1,18 @@
 .travel-options {
-  display: block;
-}
-.button-group {
-  display: block;
-}
-.next-button {
-  float: right;
-  display: block;
+  margin-top: 10%;
 }
 .project-detail{
   display: flex;
   justify-content: center;
+}
+.insurance-detail{
+  margin-bottom: 2%;
+}
+.material-icons{
+  font-size: 22px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+table{
+  box-shadow: none;
 }

@@ -112,7 +112,7 @@ export class RequestViewComponent implements OnInit {
       }
     );
     setTimeout(() => {
-      this.router.navigate(['travel/empDetail']);
+      this.router.navigate(['travel/application']);
     }, 1000);
   }
 

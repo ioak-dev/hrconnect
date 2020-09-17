@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {EventService} from '../../common/Services/event.service';
 
 @Component({
   selector: 'app-insurance',
@@ -11,7 +12,10 @@ export class InsuranceComponent implements OnInit {
   insuranceNew = 'new';
   newrow: any;
 
-  constructor(public router: Router) {
+  constructor(
+    public router: Router,
+    public eventService: EventService
+  ) {
     if (sessionStorage.request) {
       const request = JSON.parse(sessionStorage.getItem('request'));
       this.insuranceArray = request.insuranceDetails ? request.insuranceDetails : [];
@@ -19,6 +23,13 @@ export class InsuranceComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.eventService.clickedEvent.subscribe(data => {
+      if (data === 'next') {
+        this.navigateNext();
+      } else if (data === 'previous') {
+        this.navigatePrevious();
+      }
+    });
     this.newrow = {country: '', comment: ''};
     if (this.insuranceArray.length === 0) {
       this.insuranceArray.push(this.newrow);
@@ -30,7 +41,7 @@ export class InsuranceComponent implements OnInit {
     request['insuranceDetails'] = this.insuranceArray;
     console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/visaDetail']);
+    this.router.navigate(['travel/application/visaDetail']);
   }
 
   navigateNext() {
@@ -38,7 +49,7 @@ export class InsuranceComponent implements OnInit {
     request['insuranceDetails'] = this.insuranceArray;
     console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/cabDetail']);
+    this.router.navigate(['travel/application/cabDetail']);
   }
 
   addRow(index) {

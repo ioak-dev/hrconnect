@@ -1,0 +1,21 @@
+.container{
+  margin-top: 20px;
+}
+app-footer{
+  position: fixed;
+  bottom: 1%;
+  width: 100%;
+  background-color: lightgray;
+  margin-bottom: -5px;
+  height: 50px;
+  z-index: 999;
+}
+
+.right-section{
+  height: calc(100vh - 50px - 85px);
+  overflow-y: auto;
+}
+::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
