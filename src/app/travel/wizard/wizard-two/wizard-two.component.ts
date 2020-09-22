@@ -40,9 +40,9 @@ export class WizardTwoComponent implements OnInit {
     console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
     if (this.travelType === 'Domestic') {
-      this.router.navigate(['travel/application/cabDetail']);
+      this.router.navigate(['travel/application/cabDetails']);
     } else if (this.travelType === 'International') {
-      this.router.navigate(['travel/application/visaDetail']);
+      this.router.navigate(['travel/application/visaDetails']);
     }
   }
 
@@ -51,6 +51,6 @@ export class WizardTwoComponent implements OnInit {
     request['travelType'] = this.travelType;
     console.log(request);
     sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/application/projectDetail']);
+    this.router.navigate(['travel/application/projectDetails']);
   }
 }

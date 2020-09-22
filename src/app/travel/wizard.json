@@ -1,7 +1,7 @@
 [
   {
     "title": "Project Details",
-    "url": "projectDetail"
+    "url": "projectDetails"
   },
   {
     "title": "Travel Type",
@@ -9,31 +9,31 @@
   },
   {
     "title": "Visa Details",
-    "url": "visaDetail"
+    "url": "visaDetails"
   },
   {
     "title": "Insurance Details",
-    "url": "insuranceDetail"
+    "url": "insuranceDetails"
   },
   {
     "title": "Cab Details",
-    "url": "cabDetail"
+    "url": "cabDetails"
   },
   {
     "title": "Flight Details",
-    "url": "flightDetail"
+    "url": "flightDetails"
   },
   {
     "title": "Train Details",
-    "url": "trainDetail"
+    "url": "trainDetails"
   },
   {
     "title": "Bus Details",
-    "url": "busDetail"
+    "url": "busDetails"
   },
   {
     "title": "Hotel Details",
-    "url": "hotelDetail"
+    "url": "hotelDetails"
   },
   {
     "title": "Summary",

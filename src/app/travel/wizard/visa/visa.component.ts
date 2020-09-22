@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {EventService} from '../../common/Services/event.service';
 
 @Component({
@@ -37,30 +37,37 @@ export class VisaComponent implements OnInit {
   }
 
   navigatePrevious() {
-    const request = JSON.parse(sessionStorage.getItem('request'));
-    request['visaDetails'] = this.visaArray;
-    console.log(request);
-    sessionStorage.setItem('request', JSON.stringify(request));
+    if (this.visaArray[this.visaArray.length - 1]['country'] &&
+      this.visaArray[this.visaArray.length - 1]['visaType']) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      request['visaDetails'] = this.visaArray;
+      sessionStorage.setItem('request', JSON.stringify(request));
+    }
     this.router.navigate(['travel/application/travelType']);
   }
 
   navigateNext() {
-    const request = JSON.parse(sessionStorage.getItem('request'));
-    request['visaDetails'] = this.visaArray;
-    console.log(request);
-    sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/application/insuranceDetail']);
+    if (this.visaArray[this.visaArray.length - 1]['country'] &&
+      this.visaArray[this.visaArray.length - 1]['visaType']) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      request['visaDetails'] = this.visaArray;
+      sessionStorage.setItem('request', JSON.stringify(request));
+    }
+    this.router.navigate(['travel/application/insuranceDetails']);
   }
 
   addRow(index) {
-    this.newrow = {country: '', visaType: '', entryType: '', comment: ''};
-    this.visaArray.push(this.newrow);
-    console.log(this.visaArray);
+    if (this.visaArray[index]['country'] && this.visaArray[index]['visaType']) {
+      this.newrow = {country: '', visaType: '', entryType: '', comment: ''};
+      this.visaArray.push(this.newrow);
+    }
     return true;
   }
 
   deleteRow(index) {
-    this.visaArray.splice(index, 1);
-    return true;
+    if (this.visaArray.length > 1) {
+      this.visaArray.splice(index, 1);
+      return true;
+    }
   }
 }

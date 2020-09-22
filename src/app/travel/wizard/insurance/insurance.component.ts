@@ -37,30 +37,35 @@ export class InsuranceComponent implements OnInit {
   }
 
   navigatePrevious() {
-    const request = JSON.parse(sessionStorage.getItem('request'));
-    request['insuranceDetails'] = this.insuranceArray;
-    console.log(request);
-    sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/application/visaDetail']);
+    if (this.insuranceArray[this.insuranceArray.length - 1]['country']) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      request['insuranceDetails'] = this.insuranceArray;
+      sessionStorage.setItem('request', JSON.stringify(request));
+    }
+    this.router.navigate(['travel/application/visaDetails']);
   }
 
   navigateNext() {
-    const request = JSON.parse(sessionStorage.getItem('request'));
-    request['insuranceDetails'] = this.insuranceArray;
-    console.log(request);
-    sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/application/cabDetail']);
+    if (this.insuranceArray[this.insuranceArray.length - 1]['country']) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      request['insuranceDetails'] = this.insuranceArray;
+      sessionStorage.setItem('request', JSON.stringify(request));
+    }
+    this.router.navigate(['travel/application/cabDetails']);
   }
 
   addRow(index) {
-    this.newrow = {country: '', comment: ''};
-    this.insuranceArray.push(this.newrow);
-    console.log(this.insuranceArray);
-    return true;
+    if (this.insuranceArray[index]['country']) {
+      this.newrow = {country: '', comment: ''};
+      this.insuranceArray.push(this.newrow);
+      return true;
+    }
   }
 
   deleteRow(index) {
-    this.insuranceArray.splice(index, 1);
-    return true;
+    if (this.insuranceArray.length > 1) {
+      this.insuranceArray.splice(index, 1);
+      return true;
+    }
   }
 }

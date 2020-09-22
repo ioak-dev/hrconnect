@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ITravel} from '../../models/travel';
 import {Router} from '@angular/router';
 import {EventService} from '../../common/Services/event.service';
@@ -15,7 +15,6 @@ export class WizardFiveComponent implements OnInit {
   constructor(
     public router: Router,
     public eventService: EventService
-
   ) {
     if (sessionStorage.request) {
       const request = JSON.parse(sessionStorage.getItem('request'));
@@ -38,29 +37,37 @@ export class WizardFiveComponent implements OnInit {
   }
 
   navigateNext() {
-    const request = JSON.parse(sessionStorage.getItem('request'));
-    request['trainDetails'] = this.trainArray;
-    sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/application/busDetail']);
+    if (this.trainArray[this.trainArray.length - 1].source &&
+      this.trainArray[this.trainArray.length - 1].source) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      request['trainDetails'] = this.trainArray;
+      sessionStorage.setItem('request', JSON.stringify(request));
+    }
+    this.router.navigate(['travel/application/busDetails']);
   }
 
   navigatePrevious() {
-    const request = JSON.parse(sessionStorage.getItem('request'));
-    request['trainDetails'] = this.trainArray;
-    console.log(request);
-    sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/application/flightDetail']);
+    if (this.trainArray[this.trainArray.length - 1].source &&
+      this.trainArray[this.trainArray.length - 1].source) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      request['trainDetails'] = this.trainArray;
+      sessionStorage.setItem('request', JSON.stringify(request));
+    }
+    this.router.navigate(['travel/application/flightDetails']);
   }
 
   addRow(index) {
-    this.newrow = {source: '', destination: '', comment: ''};
-    this.trainArray.push(this.newrow);
-    console.log(this.trainArray);
-    return true;
+    if (this.trainArray[index].source && this.trainArray[index].destination) {
+      this.newrow = {source: '', destination: '', comment: ''};
+      this.trainArray.push(this.newrow);
+      return true;
+    }
   }
 
   deleteRow(index) {
-    this.trainArray.splice(index, 1);
-    return true;
+    if (this.trainArray.length > 1) {
+      this.trainArray.splice(index, 1);
+      return true;
+    }
   }
 }

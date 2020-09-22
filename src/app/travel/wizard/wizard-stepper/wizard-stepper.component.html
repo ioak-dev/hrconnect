@@ -3,8 +3,8 @@
     <div
       [ngClass]="{ 'step-visited': visitedWizards.indexOf(wizard.url) !== -1,
                       'step-active': wizard.url === activeUrl,
-                      'hide-visa': wizard.url === 'visaDetail' && !isInternational,
-                      'hide-insurance': wizard.url === 'insuranceDetail' && !isInternational}"
+                      'hide-visa': wizard.url === 'visaDetails' && !isInternational,
+                      'hide-insurance': wizard.url === 'insuranceDetails' && !isInternational}"
          class="step">
       <div class="step-header" (click)="navigate(wizard.url)">
         <div class="header">{{wizard.title}}</div>

@@ -38,7 +38,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'projectDetail',
+        path: 'projectDetails',
         component: WizardOneComponent,
         canActivate: [AuthGuard]
       },
@@ -48,37 +48,37 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
-        path: 'cabDetail',
+        path: 'cabDetails',
         component: WizardThreeComponent,
         canActivate: [AuthGuard]
       },
       {
-        path: 'flightDetail',
+        path: 'flightDetails',
         component: WizardFourComponent,
         canActivate: [AuthGuard]
       },
       {
-        path: 'trainDetail',
+        path: 'trainDetails',
         component: WizardFiveComponent,
         canActivate: [AuthGuard]
       },
       {
-        path: 'busDetail',
+        path: 'busDetails',
         component: WizardSixComponent,
         canActivate: [AuthGuard]
       },
       {
-        path: 'hotelDetail',
+        path: 'hotelDetails',
         component: WizardSevenComponent,
         canActivate: [AuthGuard]
       },
       {
-        path: 'visaDetail',
+        path: 'visaDetails',
         component: VisaComponent,
         canActivate: [AuthGuard]
       },
       {
-        path: 'insuranceDetail',
+        path: 'insuranceDetails',
         component: InsuranceComponent,
         canActivate: [AuthGuard]
       },

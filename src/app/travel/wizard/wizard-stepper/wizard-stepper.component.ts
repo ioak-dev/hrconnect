@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
-import {filter} from 'rxjs/operators';
+import {filter, map} from 'rxjs/operators';
 
 import * as wizards from './../../wizard.json';
 import {EventService} from '../../common/Services/event.service';
@@ -14,6 +14,7 @@ import {EventService} from '../../common/Services/event.service';
 export class WizardStepperComponent implements OnInit {
   wizards: any;
   activeUrl: string;
+  previousUrl: string;
   visitedWizards = [];
   isInternational = false;
 
@@ -23,11 +24,10 @@ export class WizardStepperComponent implements OnInit {
     router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
+      const sessionData = JSON.parse(sessionStorage.getItem('request'));
       const currentURL = event.url.split('/');
       this.activeUrl = currentURL[currentURL.length - 1];
-      if (this.visitedWizards.indexOf(this.activeUrl) === -1) {
-        this.visitedWizards.push(this.activeUrl);
-      }
+      this.visitedWizards = Object.keys(sessionData);
     });
     if (sessionStorage.request) {
       const request = JSON.parse(sessionStorage.getItem('request'));
@@ -36,7 +36,6 @@ export class WizardStepperComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.router.navigate([`travel/application/projectDetail`]);
     this.eventService.clickedEvent.subscribe(data => {
       if (data === 'domestic') {
         this.isInternational = false;

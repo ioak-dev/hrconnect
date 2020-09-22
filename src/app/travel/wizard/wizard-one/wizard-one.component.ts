@@ -39,11 +39,12 @@ export class WizardOneComponent implements OnInit {
   }
 
   navigateNext() {
-    const request = JSON.parse(sessionStorage.getItem('request'));
-    request['projectDetails'] = this.projectDetails;
-    console.log(request);
-    sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/application/travelType']);
+    if (this.projectDetails.projectName && this.projectDetails.email) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      request['projectDetails'] = this.projectDetails;
+      sessionStorage.setItem('request', JSON.stringify(request));
+      this.router.navigate(['travel/application/travelType']);
+    }
   }
 
 

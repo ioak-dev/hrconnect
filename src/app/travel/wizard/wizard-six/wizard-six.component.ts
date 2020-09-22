@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ITravel} from '../../models/travel';
 import {Router} from '@angular/router';
 import {EventService} from '../../common/Services/event.service';
@@ -37,30 +37,37 @@ export class WizardSixComponent implements OnInit {
   }
 
   navigateNext() {
-    const request = JSON.parse(sessionStorage.getItem('request'));
-    request['busDetails'] = this.busArray;
-    console.log(request);
-    sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/application/hotelDetail']);
+    if (this.busArray[this.busArray.length - 1].source &&
+      this.busArray[this.busArray.length - 1].source) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      request['busDetails'] = this.busArray;
+      sessionStorage.setItem('request', JSON.stringify(request));
+    }
+    this.router.navigate(['travel/application/hotelDetails']);
   }
 
   navigatePrevious() {
-    const request = JSON.parse(sessionStorage.getItem('request'));
-    request['busDetails'] = this.busArray;
-    console.log(request);
-    sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/application/trainDetail']);
+    if (this.busArray[this.busArray.length - 1].source &&
+      this.busArray[this.busArray.length - 1].source) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      request['busDetails'] = this.busArray;
+      sessionStorage.setItem('request', JSON.stringify(request));
+    }
+    this.router.navigate(['travel/application/trainDetails']);
   }
 
   addRow(index) {
-    this.newrow = {source: '', destination: '', comment: ''};
-    this.busArray.push(this.newrow);
-    console.log(this.busArray);
-    return true;
+    if (this.busArray[index].source && this.busArray[index].destination) {
+      this.newrow = {source: '', destination: '', comment: ''};
+      this.busArray.push(this.newrow);
+      return true;
+    }
   }
 
   deleteRow(index) {
-    this.busArray.splice(index, 1);
-    return true;
+    if (this.busArray.length > 1) {
+      this.busArray.splice(index, 1);
+      return true;
+    }
   }
 }

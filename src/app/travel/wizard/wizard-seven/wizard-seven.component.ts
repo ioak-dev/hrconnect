@@ -36,27 +36,35 @@ export class WizardSevenComponent implements OnInit {
   }
 
   navigateNext() {
-    const request = JSON.parse(sessionStorage.getItem('request'));
-    request['hotelDetails'] = this.hotelArray;
-    sessionStorage.setItem('request', JSON.stringify(request));
+    if (this.hotelArray[this.hotelArray.length - 1]['location']) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      request['hotelDetails'] = this.hotelArray;
+      sessionStorage.setItem('request', JSON.stringify(request));
+    }
     this.router.navigate(['travel/application/submit']);
   }
 
   navigatePrevious() {
-    const request = JSON.parse(sessionStorage.getItem('request'));
-    request['hotelDetails'] = this.hotelArray;
-    sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/application/busDetail']);
+    if (this.hotelArray[this.hotelArray.length - 1]['location']) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      request['hotelDetails'] = this.hotelArray;
+      sessionStorage.setItem('request', JSON.stringify(request));
+    }
+    this.router.navigate(['travel/application/busDetails']);
   }
 
   addRow(index) {
-    this.newrow = {location: '', checkinDate: '', checkoutDate: '', comment: ''};
-    this.hotelArray.push(this.newrow);
-    return true;
+    if (this.hotelArray[index]['location']) {
+      this.newrow = {location: '', checkinDate: '', checkoutDate: '', comment: ''};
+      this.hotelArray.push(this.newrow);
+      return true;
+    }
   }
 
   deleteRow(index) {
-    this.hotelArray.splice(index, 1);
-    return true;
+    if (this.hotelArray.length > 1) {
+      this.hotelArray.splice(index, 1);
+      return true;
+    }
   }
 }

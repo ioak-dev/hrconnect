@@ -19,7 +19,7 @@ export class TravelService {
   }
 
   create(request, userId): Observable<any> {
-    return this.http.put(this.env.backendUrl + `/wizard/create?userId=${userId}`, request, httpOptions)
+    return this.http.put(this.env.backendUrl + `/wizard/submit?userId=${userId}`, request, httpOptions)
     .pipe(map(
       (response: HttpResponse<any>) => response
     ));

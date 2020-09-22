@@ -8,6 +8,9 @@
 button {
   margin: 0 10px;
 }
+.btn {
+  padding: 5px 10px;
+}
 
 i {
   vertical-align: middle;

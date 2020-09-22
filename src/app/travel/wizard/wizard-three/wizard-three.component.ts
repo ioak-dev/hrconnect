@@ -37,28 +37,37 @@ export class WizardThreeComponent implements OnInit {
   }
 
   navigateNext() {
-    const request = JSON.parse(sessionStorage.getItem('request'));
-    request['cabDetails'] = this.cabArray;
-    sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/application/flightDetail']);
+    if (this.cabArray[this.cabArray.length - 1].source &&
+      this.cabArray[this.cabArray.length - 1].source) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      request['cabDetails'] = this.cabArray;
+      sessionStorage.setItem('request', JSON.stringify(request));
+    }
+    this.router.navigate(['travel/application/flightDetails']);
   }
 
   navigatePrevious() {
-    const request = JSON.parse(sessionStorage.getItem('request'));
-    request['cabDetails'] = this.cabArray;
-    sessionStorage.setItem('request', JSON.stringify(request));
+    if (this.cabArray[this.cabArray.length - 1].source &&
+      this.cabArray[this.cabArray.length - 1].source) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      request['cabDetails'] = this.cabArray;
+      sessionStorage.setItem('request', JSON.stringify(request));
+    }
     this.router.navigate(['travel/application/travelType']);
   }
 
   addRow(index) {
-    this.newrow = {source: '', destination: '', comment: ''};
-    this.cabArray.push(this.newrow);
-    console.log(this.cabArray);
-    return true;
+    if (this.cabArray[index].source && this.cabArray[index].destination) {
+      this.newrow = {source: '', destination: '', comment: ''};
+      this.cabArray.push(this.newrow);
+      return true;
+    }
   }
 
   deleteRow(index) {
-    this.cabArray.splice(index, 1);
-    return true;
+    if (this.cabArray.length > 1) {
+      this.cabArray.splice(index, 1);
+      return true;
+    }
   }
 }

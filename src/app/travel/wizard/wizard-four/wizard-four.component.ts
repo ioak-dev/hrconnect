@@ -37,27 +37,37 @@ export class WizardFourComponent implements OnInit {
   }
 
   navigateNext() {
-    const request = JSON.parse(sessionStorage.getItem('request'));
-    request['flightDetails'] = this.flightArray;
-    sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/application/trainDetail']);
+    if (this.flightArray[this.flightArray.length - 1].source &&
+      this.flightArray[this.flightArray.length - 1].source) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      request['flightDetails'] = this.flightArray;
+      sessionStorage.setItem('request', JSON.stringify(request));
+    }
+    this.router.navigate(['travel/application/trainDetails']);
   }
 
   navigatePrevious() {
-    const request = JSON.parse(sessionStorage.getItem('request'));
-    request['flightDetails'] = this.flightArray;
-    sessionStorage.setItem('request', JSON.stringify(request));
-    this.router.navigate(['travel/application/cabDetail']);
+    if (this.flightArray[this.flightArray.length - 1].source &&
+      this.flightArray[this.flightArray.length - 1].source) {
+      const request = JSON.parse(sessionStorage.getItem('request'));
+      request['flightDetails'] = this.flightArray;
+      sessionStorage.setItem('request', JSON.stringify(request));
+    }
+    this.router.navigate(['travel/application/cabDetails']);
   }
 
   addRow(index) {
-    this.newrow = {source: '', destination: '', comment: ''};
-    this.flightArray.push(this.newrow);
-    return true;
+    if (this.flightArray[index].source && this.flightArray[index].destination) {
+      this.newrow = {source: '', destination: '', comment: ''};
+      this.flightArray.push(this.newrow);
+      return true;
+    }
   }
 
   deleteRow(index) {
-    this.flightArray.splice(index, 1);
-    return true;
+    if (this.flightArray.length > 1) {
+      this.flightArray.splice(index, 1);
+      return true;
+    }
   }
 }
